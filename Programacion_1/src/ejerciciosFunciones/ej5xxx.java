@@ -84,14 +84,20 @@ public class ej5xxx {
 	 * @return un boolean dependiendo de si la comprobación es verdadera o falsa
 	 */
 	public static boolean esPrimo(int num) {
+		//Si num es igual a 0 o a 1, si o si son primos
 		if(num==0 || num==1) {
+			//Devolvemos false
 			return false;
 		}
+		//Con un for recorremos desde el 2 hasta la mitad del numero introducido
 		for(int i=2; i<=num/2; i++) {
+			//Si el resto de dividir el numero introducido entre i es igual a 0
 			if(num%i==0) {
+				//Devolvemos false
 				return false;
 			}
 		}
+		//Devolvemos true si el código llega hasta aquí
 		return true;
 	}
 
