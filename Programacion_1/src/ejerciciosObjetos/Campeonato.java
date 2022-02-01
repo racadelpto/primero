@@ -34,12 +34,12 @@ public class Campeonato {
 		Circuito circuitoMasLargo = new Circuito();
 
 		// Usamos un for para recorrer el array circuitos
-		for (int i = 0; i < circuitos.length; i++) {
+		for (int i = 0; i < this.circuitos.length; i++) {
 			// Si la longitud del objeto circuitos[i] es mayor que la longitud de la
 			// variable circuitoMasLargo
-			if (circuitos[i].getLongitud() > circuitoMasLargo.getLongitud()) {
+			if (this.circuitos[i].getLongitud() > circuitoMasLargo.getLongitud()) {
 				// Vamos almacenando el objeto circuitos[i] en la variable circuitoMasLargo
-				circuitoMasLargo = circuitos[i];
+				circuitoMasLargo = this.circuitos[i];
 			}
 		}
 		// Devolvemos la variable circuitoMasLargo
@@ -58,11 +58,11 @@ public class Campeonato {
 		System.out.println("\n" + nombreEscuderia.toUpperCase() + ":");
 
 		// Recorremos el array pilotos
-		for (int i = 0; i < pilotos.length; i++) {
+		for (int i = 0; i < this.pilotos.length; i++) {
 			// Si la escuderia del objeto pilotos[i] es igual a nombreEscuderia introducido
-			if (pilotos[i].getEscuderia().equals(nombreEscuderia)) {
+			if (this.pilotos[i].getEscuderia().equals(nombreEscuderia)) {
 				// Expresamos por pantalla el nombre del objeto pilotos[i]
-				System.out.println(pilotos[i].getNombre());
+				System.out.println(this.pilotos[i].getNombre());
 			}
 		}
 	}
@@ -73,16 +73,16 @@ public class Campeonato {
 	 */
 	public void comprobarCoches() {
 		// Recorremos el array pilotos
-		for (int i = 0; i < pilotos.length; i++) {
+		for (int i = 0; i < this.pilotos.length; i++) {
 			// Inicializamos la variable comprobador a 0
 			int comprobador = 0;
 
 			// Expresamos por pantalla el nombre del pilotos[i]
-			System.out.print("\n" + pilotos[i].getNombre());
+			System.out.print("\n" + this.pilotos[i].getNombre());
 
 			// Array que recorre del 0 al 3 simulando las posiciones del array ruedas de
 			// cada coche
-			for (int j = 0; j < pilotos[i].getCocheAsignado().getRuedas().length; j++) {
+			for (int j = 0; j < this.pilotos[i].getCocheAsignado().getRuedas().length; j++) {
 				// Si la presión de la rueda en la posición j del array ruedas del cocheAsignado
 				// del pilotos[i] menos la PRESION_MAXIMA
 				// es mayor al 5% de PRESION_MAXIMA
@@ -91,7 +91,7 @@ public class Campeonato {
 					// Expresamos por pantalla el lugarRueda de la rueda en la posición j del array
 					// ruedas del cocheAsignado del pilotos[i]
 					// más un mensaje establecido
-					System.out.print(" Rueda " + pilotos[i].getCocheAsignado().getRuedas()[j].getlugarRueda()
+					System.out.print(" Rueda " + this.pilotos[i].getCocheAsignado().getRuedas()[j].getlugarRueda()
 							+ " presion mayor a la estipulada");
 				} // Si no
 				else {
@@ -103,7 +103,7 @@ public class Campeonato {
 			// Si la potencia del
 			// cocheAsignado del pilotos[i] menos la POTENCIA_MAXIMA
 			// es mayor al 5 por ciento de POTENCIA_MAXIMA
-			if (pilotos[i].getCocheAsignado().getPotencia() - POTENCIA_MAXIMA > 0.05 * POTENCIA_MAXIMA) {
+			if (this.pilotos[i].getCocheAsignado().getPotencia() - POTENCIA_MAXIMA > 0.05 * POTENCIA_MAXIMA) {
 				// Expresamos por pantalla el mensaje
 				System.out.print(" Potencia mayor a la estipulada");
 			} // Si no
@@ -114,7 +114,7 @@ public class Campeonato {
 
 			// Si el PESO_MINIMO menos el peso del cocheAsignado del pilotos[i] es mayor al
 			// 10% de PESO_MINIMO
-			if (PESO_MINIMO - pilotos[i].getCocheAsignado().getPeso() > 0.1 * PESO_MINIMO) {
+			if (PESO_MINIMO - this.pilotos[i].getCocheAsignado().getPeso() > 0.1 * PESO_MINIMO) {
 				// Expresamos por pantalla un mensaje
 				System.out.print(" Peso inferior al estipulado");
 			} // Si no

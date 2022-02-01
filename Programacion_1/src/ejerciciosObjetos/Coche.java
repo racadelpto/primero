@@ -124,7 +124,7 @@ public class Coche {
 		// Si posicion es mayor o igual a 0 y menor de 4
 		if (posicion >= 0 && posicion < 4) {
 			// La suspension en la posicion introducida pasa a ser suspension
-			suspensiones[posicion] = suspension;
+			this.suspensiones[posicion] = suspension;
 			// Devolvemos true
 			return true;
 		} // Si no
