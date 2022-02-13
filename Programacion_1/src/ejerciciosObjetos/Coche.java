@@ -172,15 +172,6 @@ public class Coche {
 	 * FUNCIONES EJERCICIOS DE FICHEROS
 	 */
 
-	public int guardarCoches(Coche listaCoches[], String ficheroDestino) {
-		FileWriter ficheroCoches = new FileWriter("ficheroCoches.txt");
-		PrintWriter pw = new PrintWriter(ficheroCoches);
-		
-		for(int i=0; i<listaCoches[]) {
-			
-		}
-	}
-
 	/*
 	 * Todos las funciones get y set de cada atributo privado para que podamos
 	 * acceder a ellos desde fuera de la clase Coche
