@@ -18,6 +18,10 @@ public class Coche {
 	
 	public static final int ERROR_FICHERO = -1;
 
+	// Variables estáticas constantes para la práctica de ficheros
+	public static final int ERROR_FICHERO = -1;
+	public static final int ERROR_ESCRITURA = -2;
+
 	// Atributos privados de la clase Coche
 	private int potencia;
 	private String nombre;
@@ -165,6 +169,10 @@ public class Coche {
 			return false;
 		}
 	}
+
+	/*
+	 * FUNCIONES EJERCICIOS DE FICHEROS
+	 */
 
 	/*
 	 * Todos las funciones get y set de cada atributo privado para que podamos
