@@ -15,6 +15,8 @@ public class Coche {
 	public static final int DELANTERA_IZQUIERDA = 1;
 	public static final int TRASERA_DERECHA = 2;
 	public static final int TRASERA_IZQUIERDA = 3;
+	
+	public static final int ERROR_FICHERO = -1;
 
 	// Atributos privados de la clase Coche
 	private int potencia;
