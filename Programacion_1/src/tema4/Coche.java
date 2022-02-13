@@ -180,18 +180,20 @@ public class Coche {
 	 * FUNCIONES EJERCICIOS DE FICHEROS
 	 */
 
-	public int guardarCoches(Coche listaCoches[], String ficheroDestino) {
+	public static int guardarCoches(Coche listaCoches[], String ficheroDestino) {
 
 		try {
 			FileWriter fw = new FileWriter(ficheroDestino);
 			PrintWriter pw = new PrintWriter(fw);
 
 			for (int i = 0; i < listaCoches.length; i++) {
-				String linea = nombre + ", " + modelo + ", " + marca + ", " + peso + ", " + potencia + ", " + color
-						+ ", " + velocidad;
+				String linea = listaCoches[i].nombre + ", " + listaCoches[i].modelo + ", " + listaCoches[i].marca + ", " + listaCoches[i].peso + ", " + listaCoches[i].potencia + ", " + listaCoches[i].color
+						+ ", " + listaCoches[i].velocidad;
 				pw.println(linea);
 			}
 
+			fw.close();
+			pw.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return ERROR_FICHERO;
@@ -244,7 +246,7 @@ public class Coche {
 		try {
 			FileReader fr = new FileReader(ficheroALeer);
 			BufferedReader br = new BufferedReader(fr);
-
+			
 			String linea = br.readLine();
 			int cantidadCoches = 0;
 
@@ -255,34 +257,41 @@ public class Coche {
 
 			Coche[] arrayCoches = new Coche[cantidadCoches];
 
-			StringTokenizer separador = new StringTokenizer(linea);
+			fr = new FileReader(ficheroALeer);
+			br = new BufferedReader(fr);
+			
+			linea = br.readLine();
+			
+			
 
 			int contador = 0;
 
-			linea = br.readLine();
-
 			while (linea != null) {
+				
+				StringTokenizer separador = new StringTokenizer(linea);
 
 				while (separador.hasMoreTokens()) {
 					arrayCoches[contador] = new Coche();
-					arrayCoches[contador].setPotencia(Integer.parseInt(separador.nextToken(", ")));
 					arrayCoches[contador].setNombre(separador.nextToken(", "));
 					arrayCoches[contador].setModelo(separador.nextToken(", "));
 					arrayCoches[contador].setMarca(separador.nextToken(", "));
 					arrayCoches[contador].setPeso(Integer.parseInt(separador.nextToken(", ")));
+					arrayCoches[contador].setPotencia(Integer.parseInt(separador.nextToken(", ")));
 					arrayCoches[contador].setColor(separador.nextToken(", "));
 					arrayCoches[contador].setVelocidad(Integer.parseInt(separador.nextToken(", ")));
 
 					contador++;
+					
 				}
-
+				
 				linea = br.readLine();
+				
 			}
 
-			while (separador.hasMoreTokens()) {
-				separador.nextToken(", ");
-			}
-
+			
+			fr.close();
+			br.close();
+			
 			return arrayCoches;
 		} catch (FileNotFoundException e) {
 
