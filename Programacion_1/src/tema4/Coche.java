@@ -1,6 +1,14 @@
-package ejerciciosObjetos;
+package tema4;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Coche {
 
@@ -171,6 +179,122 @@ public class Coche {
 	/*
 	 * FUNCIONES EJERCICIOS DE FICHEROS
 	 */
+
+	public int guardarCoches(Coche listaCoches[], String ficheroDestino) {
+
+		try {
+			FileWriter fw = new FileWriter(ficheroDestino);
+			PrintWriter pw = new PrintWriter(fw);
+
+			for (int i = 0; i < listaCoches.length; i++) {
+				String linea = nombre + ", " + modelo + ", " + marca + ", " + peso + ", " + potencia + ", " + color
+						+ ", " + velocidad;
+				pw.println(linea);
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return ERROR_FICHERO;
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return ERROR_ESCRITURA;
+		}
+
+		return 0;
+
+	}
+
+	public int contarLineas(String fichero) {
+		File ficheroALeer = new File(fichero);
+		int cantidadLineas = 0;
+
+		try {
+			FileReader fr = new FileReader(ficheroALeer);
+			BufferedReader br = new BufferedReader(fr);
+
+			String linea = br.readLine();
+
+			int i = 1;
+
+			while (linea != null) {
+
+				cantidadLineas++;
+
+				linea = br.readLine();
+
+				i++;
+			}
+
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+			return ERROR_FICHERO;
+		} catch (IOException e) {
+
+			e.printStackTrace();
+			return ERROR_FICHERO;
+		}
+
+		return cantidadLineas;
+	}
+
+	Coche[] cargarCoches(String rutaFichero) {
+		File ficheroALeer = new File(rutaFichero);
+
+		try {
+			FileReader fr = new FileReader(ficheroALeer);
+			BufferedReader br = new BufferedReader(fr);
+
+			String linea = br.readLine();
+			int cantidadCoches = 0;
+
+			while (linea != null) {
+				cantidadCoches++;
+				linea = br.readLine();
+			}
+
+			Coche[] arrayCoches = new Coche[cantidadCoches];
+
+			StringTokenizer separador = new StringTokenizer(linea);
+
+			int contador = 0;
+
+			linea = br.readLine();
+
+			while (linea != null) {
+
+				while (separador.hasMoreTokens()) {
+					arrayCoches[contador] = new Coche();
+					arrayCoches[contador].setPotencia(Integer.parseInt(separador.nextToken(", ")));
+					arrayCoches[contador].setNombre(separador.nextToken(", "));
+					arrayCoches[contador].setModelo(separador.nextToken(", "));
+					arrayCoches[contador].setMarca(separador.nextToken(", "));
+					arrayCoches[contador].setPeso(Integer.parseInt(separador.nextToken(", ")));
+					arrayCoches[contador].setColor(separador.nextToken(", "));
+					arrayCoches[contador].setVelocidad(Integer.parseInt(separador.nextToken(", ")));
+
+					contador++;
+				}
+
+				linea = br.readLine();
+			}
+
+			while (separador.hasMoreTokens()) {
+				separador.nextToken(", ");
+			}
+
+			return arrayCoches;
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 
 	/*
 	 * Todos las funciones get y set de cada atributo privado para que podamos
