@@ -16,6 +16,10 @@ public class Coche {
 	public static final int TRASERA_DERECHA = 2;
 	public static final int TRASERA_IZQUIERDA = 3;
 
+	// Variables estáticas constantes para la práctica de ficheros
+	public static final int ERROR_FICHERO = -1;
+	public static final int ERROR_ESCRITURA = -2;
+
 	// Atributos privados de la clase Coche
 	private int potencia;
 	private String nombre;
@@ -161,6 +165,19 @@ public class Coche {
 		else {
 			// Devolvemos false
 			return false;
+		}
+	}
+
+	/*
+	 * FUNCIONES EJERCICIOS DE FICHEROS
+	 */
+
+	public int guardarCoches(Coche listaCoches[], String ficheroDestino) {
+		FileWriter ficheroCoches = new FileWriter("ficheroCoches.txt");
+		PrintWriter pw = new PrintWriter(ficheroCoches);
+		
+		for(int i=0; i<listaCoches[]) {
+			
 		}
 	}
 
