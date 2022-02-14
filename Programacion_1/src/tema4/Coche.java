@@ -180,98 +180,183 @@ public class Coche {
 	 * FUNCIONES EJERCICIOS DE FICHEROS
 	 */
 
-	public static int guardarCoches(Coche listaCoches[], String ficheroDestino) {
+	/**
+	 * Una función que escribe los datos de los coches del array recibido en el
+	 * fichero indicado como parámetro
+	 * 
+	 * @param listaCoches
+	 * @param ficheroDestino
+	 * @return un número dependiendo de si ha funcionado correctamente o hay algún
+	 *         errorw
+	 */
+	public int guardarCoches(Coche listaCoches[], String ficheroDestino) {
 
+		// Intentamos el siguiente código
 		try {
+			// Creamos un objeto FileWriter con ficheroDestino como referencia de fichero
 			FileWriter fw = new FileWriter(ficheroDestino);
+
+			// Creamos un objeto PrintWriter con el objeto FileWriter como referencia
 			PrintWriter pw = new PrintWriter(fw);
 
+			// Usamos un for para ir guardando en un String los datos de los coches del
+			// array de coches recibido
 			for (int i = 0; i < listaCoches.length; i++) {
-				String linea = listaCoches[i].nombre + ", " + listaCoches[i].modelo + ", " + listaCoches[i].marca + ", " + listaCoches[i].peso + ", " + listaCoches[i].potencia + ", " + listaCoches[i].color
-						+ ", " + listaCoches[i].velocidad;
+				// Vamos guardando los datos del coche en el String linea
+				String linea = listaCoches[i].nombre + ", " + listaCoches[i].modelo + ", " + listaCoches[i].marca + ", "
+						+ listaCoches[i].peso + ", " + listaCoches[i].potencia + ", " + listaCoches[i].color + ", "
+						+ listaCoches[i].velocidad;
+
+				// Imprimimos linea en el fichero recibido gracias al objeto PrintWriter
 				pw.println(linea);
 			}
 
+			// Cerramos los objetos fw y pw
 			fw.close();
 			pw.close();
-		} catch (FileNotFoundException e) {
+		} // Si da el error FileNotFoundException
+		catch (FileNotFoundException e) {
+			// Se comunica el error
 			e.printStackTrace();
+
+			// Devolvemos ERROR_FICHERO
 			return ERROR_FICHERO;
-		} catch (IOException ioe) {
+		} // Si da el error IOException
+		catch (IOException ioe) {
+			// Se comunica el error
 			ioe.printStackTrace();
+
+			// Devolvemos ERROR_ESCRITURA
 			return ERROR_ESCRITURA;
 		}
 
+		// Devolvemos 0 si llegamos hasta aquí
 		return 0;
 
 	}
 
+	/**
+	 * Una función que que recibe un fichero como parámetro y cuenta las líneas que
+	 * este tiene
+	 * 
+	 * @param fichero
+	 * @return el número de líneas que tenga o error en el caso que lo haya
+	 */
 	public int contarLineas(String fichero) {
+		// Creamos un objeto File con el fichero como referencia
 		File ficheroALeer = new File(fichero);
+
+		// Creamos un int cantidadLineas para ir almacenando el número de líneas
 		int cantidadLineas = 0;
 
+		// Intentamos el siguiente código
 		try {
+			// Creamos un objeto FileReader con ficheroALeer como referencia
 			FileReader fr = new FileReader(ficheroALeer);
+
+			// Creamos un objeto BufferedReader con el objeto FileReader como referencia
 			BufferedReader br = new BufferedReader(fr);
 
+			// Creamos un String linea que almacene la linea que lee el br
 			String linea = br.readLine();
 
-			int i = 1;
-
+			// Mientras linea sea diferente de null
 			while (linea != null) {
 
+				// Vamos sumando 1 a cantidadLineas
 				cantidadLineas++;
 
+				// linea pasa a ser la siguiente linea leida por br
 				linea = br.readLine();
 
-				i++;
 			}
 
-		} catch (FileNotFoundException e) {
-
+			// Cerramos fr y br
+			fr.close();
+			br.close();
+		} // Si da el error FileNotFoundException
+		catch (FileNotFoundException e) {
+			// Se comunica el error
 			e.printStackTrace();
-			return ERROR_FICHERO;
-		} catch (IOException e) {
 
-			e.printStackTrace();
+			// Devolvemos ERROR_FICHERO
 			return ERROR_FICHERO;
+		} // Si da el error IOException
+		catch (IOException ioe) {
+			// Se comunica el error
+			ioe.printStackTrace();
+
+			// Devolvemos ERROR_ESCRITURA
+			return ERROR_ESCRITURA;
 		}
 
+		// Devolvemos cantidadLineas
 		return cantidadLineas;
 	}
 
-	Coche[] cargarCoches(String rutaFichero) {
+	/**
+	 * Una función que va leyendo un fichero recibido como parámetro y va
+	 * almacenando los datos de cada línea en un objeto Coche
+	 * 
+	 * @param rutaFichero
+	 * @return un array de Coche con todos los objetos Coche con los datos leídos
+	 */
+	public Coche[] cargarCoches(String rutaFichero) {
+		// Creamos un objeto File con rutaFichero como referencia
 		File ficheroALeer = new File(rutaFichero);
 
+		// Intentamos el siguiente código
 		try {
+			// Creamos un objeto FileReader con ficheroALeer como referencia
 			FileReader fr = new FileReader(ficheroALeer);
+
+			// Creamos un objeto BufferedReader con el objeto FileReader como referencia
 			BufferedReader br = new BufferedReader(fr);
-			
+
+			// Creamos una String linea que almacena la linea que lee el br
 			String linea = br.readLine();
+
+			// Creamos un int cantidadCoches y lo inicializamos a 0
 			int cantidadCoches = 0;
 
+			// Mientras linea sea diferente de null
 			while (linea != null) {
+				// Vamos sumando 1 a cantidadCoches
 				cantidadCoches++;
+
+				// linea pasa a ser la siguiente linea leída por br
 				linea = br.readLine();
 			}
 
+			// Creamos un array de Coche con cantidadCoches como tamaño
 			Coche[] arrayCoches = new Coche[cantidadCoches];
 
+			// Definimos de nuevo el objeto FileReader para resetear el fichero y empezar
+			// desde el principio
 			fr = new FileReader(ficheroALeer);
-			br = new BufferedReader(fr);
-			
-			linea = br.readLine();
-			
-			
 
+			// Hacemos lo mismo con el BufferedReader
+			br = new BufferedReader(fr);
+
+			// Almacenamos en linea la linea leída por el br
+			linea = br.readLine();
+
+			// Creamos un int contador y lo inicializamos a 0
 			int contador = 0;
 
+			// Mientras linea sea diferente de null
 			while (linea != null) {
-				
+
+				// Creamos un StringTokenizer separador con linea como referencia
 				StringTokenizer separador = new StringTokenizer(linea);
 
+				// Mientras separador tenga más elementos que leer
 				while (separador.hasMoreTokens()) {
+					// Primero inicializamos el objeto Coche del arrayCoches en la posición contador
 					arrayCoches[contador] = new Coche();
+
+					// Le vamos asignando las variables en orden
+					// Se especifica ", " como espacio entre cada elemento
 					arrayCoches[contador].setNombre(separador.nextToken(", "));
 					arrayCoches[contador].setModelo(separador.nextToken(", "));
 					arrayCoches[contador].setMarca(separador.nextToken(", "));
@@ -280,26 +365,36 @@ public class Coche {
 					arrayCoches[contador].setColor(separador.nextToken(", "));
 					arrayCoches[contador].setVelocidad(Integer.parseInt(separador.nextToken(", ")));
 
+					// Sumamos 1 a contador
 					contador++;
-					
+
 				}
-				
+
+				// linea pasa a ser la siguiente línea leída
 				linea = br.readLine();
-				
+
 			}
 
-			
+			// Cerramos el fr y el br
 			fr.close();
 			br.close();
-			
+
+			// Devolvemos el arrayCoches
 			return arrayCoches;
-		} catch (FileNotFoundException e) {
 
+		} // Si da el error FileNotFoundException
+		catch (FileNotFoundException e) {
+			// Se comunica el error
 			e.printStackTrace();
+
+			// Devolvemos null
 			return null;
-		} catch (IOException e) {
+		} // Si da el error IOException
+		catch (IOException ioe) {
+			// Se comunica el error
+			ioe.printStackTrace();
 
-			e.printStackTrace();
+			// Devolvemos null
 			return null;
 		}
 

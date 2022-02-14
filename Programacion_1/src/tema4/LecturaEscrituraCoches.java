@@ -1,20 +1,27 @@
 package tema4;
 
+import java.util.Arrays;
+
 public class LecturaEscrituraCoches {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		int cantidadCoches = 5;
+		// Creamos un array de Coche de tamaño 5
 		Coche[] arrayCoches = new Coche[5];
 
+		// Usamos un for para recorrer el arrayCoches
 		for (int i = 0; i < arrayCoches.length; i++) {
+			// Para cada objeto arrayCoches[i], creamos un objeto Coche con los siguientes
+			// datos como parámetros
+			// En algunos casos se generarán aleatoriamente y en otros vendrán predefinidos
 			arrayCoches[i] = new Coche((int) (Math.random() * 100 + 1), "Coche" + (i + 1), "Corvette", "Mercedes",
 					(int) (Math.random() * 1000 + 1), Coche.AMARILLO, (int) (Math.random() * 100 + 1), new Rueda[4],
 					new Suspension[4]);
+
 			for (int j = 0; j < arrayCoches[i].getRuedas().length; j++) {
 				arrayCoches[i].getRuedas()[j] = new Rueda();
-	
+
 				switch (j) {
 				case 0:
 					arrayCoches[i].getRuedas()[j].setlugarRueda(" delantera derecha");
@@ -32,13 +39,31 @@ public class LecturaEscrituraCoches {
 			}
 		}
 
+		// Probamos la primera función guardarCoches. Debemos usar un objeto de la clase
+		// Coche (en mi caso arrayCoches[0]), para poder
+		// usar la función
+		// Dentro de la función especificamos los parámetros: el array de Coche y el
+		// fichero destino
+		// Se generará un fichero con los datos de los coches contenidos en ese array
+		// Se incluye la captura en la aunque en la tercera función se usara ese fichero
+		// para leer los datos y almacenarlos en un
+		// array Coche
 		arrayCoches[0].guardarCoches(arrayCoches, "c:\\logs\\arrayCoches.txt");
-		
-		System.out.println(arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt"));
-		
+
+		// Expresamos por pantalla la cantidad de líneas que ha leído la segunda función
+		// contarLineas
+		// Usamos el fichero creado con la primera función como referencia
+		System.out.println("La cantidad de líneas que tiene el fichero creado en la primera función es: "
+				+ arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt"));
+
+		// Finalmente probamos la tercera función
+		// Creamos un array de Coche para guardar el array generado por la función con
+		// el fichero creado con la primera función como referencia
 		Coche[] cochesLeidos = arrayCoches[0].cargarCoches("c:\\logs\\arrayCoches.txt");
-		cochesLeidos.toString();
-		System.out.println(cochesLeidos[4].toString());
+
+		// Expresamos por pantalla los datos del array cochesLeidos gracias a
+		// Arrays.toString
+		System.out.println("\nLos datos de los coches leídos son los siguientes: " + Arrays.toString(cochesLeidos));
 
 	}
 
