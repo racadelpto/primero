@@ -21,10 +21,29 @@ public class EjemploFicherosBinarios {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		copiarFichero(RUTA + "libros.txt", "ficherodestino.txt");
+		int resultado = copiarFichero(RUTA + "holaaa.jpg", RUTA + "\\destino\\adios.jpg");
+
+		switch (resultado) {
+		case COPIA_CORRECTA:
+			System.out.println("El fichero se ha copiado correctamente");
+			break;
+		case ERROR_FILENOTFOUND:
+			System.out.println("El fichero no se ha encontrado o no tenemos permisos");
+			break;
+		case ERROR_LECTURA:
+			System.out.println("Ha habido un problema al escribir o leer del fichero");
+			break;
+		}
 
 	}
 
+	/**
+	 * El módulo copia el fichero origen en la ruta destino de forma binaria
+	 * 
+	 * @param rutaOrigen
+	 * @param rutaDestino
+	 * @return
+	 */
 	public static int copiarFichero(String rutaOrigen, String rutaDestino) {
 
 		// Por defecto suponemos que se va a copiar bien
@@ -75,8 +94,10 @@ public class EjemploFicherosBinarios {
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
+			resultado = ERROR_FILENOTFOUND;
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
+			resultado = ERROR_LECTURA;
 		}
 
 		return resultado;
