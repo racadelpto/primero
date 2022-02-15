@@ -33,7 +33,7 @@ public class LecturaEscrituraCoches {
 					arrayCoches[i].getRuedas()[j].setlugarRueda(" trasera derecha");
 					break;
 				case 3:
-					arrayCoches[i].getRuedas()[j].setlugarRueda(" trasera izquierdaw");
+					arrayCoches[i].getRuedas()[j].setlugarRueda(" trasera izquierda");
 					break;
 				}
 			}
@@ -44,17 +44,37 @@ public class LecturaEscrituraCoches {
 		// usar la función
 		// Dentro de la función especificamos los parámetros: el array de Coche y el
 		// fichero destino
+		// Usamos un switch para los casos en los que de error poder comunicarlo
 		// Se generará un fichero con los datos de los coches contenidos en ese array
 		// Se incluye la captura en la aunque en la tercera función se usara ese fichero
 		// para leer los datos y almacenarlos en un
 		// array Coche
-		arrayCoches[0].guardarCoches(arrayCoches, "c:\\logs\\arrayCoches.txt");
 
-		// Expresamos por pantalla la cantidad de líneas que ha leído la segunda función
-		// contarLineas
+		switch (arrayCoches[0].guardarCoches(arrayCoches, "c:\\logs\\arrayCoches.txt")) {
+		case 0:
+			System.out.println("Los datos se han guardado en el fichero correctamente");
+			break;
+		case Coche.ERROR_FICHERO:
+			System.out.println("El fichero no se ha encontrado o no tenemos permisos");
+			break;
+		case Coche.ERROR_ESCRITURA:
+			System.out.println("Ha habido un problema al escribir o leer del fichero");
+			break;
+		}
+
+		// Usamos un if para expresar por pantalla la cantidad de líneas que ha leído la
+		// segunda función
+		// contarLineas, si hay errores lo comunica
 		// Usamos el fichero creado con la primera función como referencia
-		System.out.println("La cantidad de líneas que tiene el fichero creado en la primera función es: "
-				+ arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt"));
+
+		if (arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt") > -1) {
+			System.out.println("La cantidad de líneas que tiene el fichero creado en la primera función es: "
+					+ arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt"));
+		} else if (arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt") == Coche.ERROR_FICHERO) {
+			System.out.println("El fichero no se ha encontrado o no tenemos permisos");
+		} else {
+			System.out.println("Ha habido un problema al escribir o leer del fichero");
+		}
 
 		// Finalmente probamos la tercera función
 		// Creamos un array de Coche para guardar el array generado por la función con
@@ -63,7 +83,12 @@ public class LecturaEscrituraCoches {
 
 		// Expresamos por pantalla los datos del array cochesLeidos gracias a
 		// Arrays.toString
-		System.out.println("\nLos datos de los coches leídos son los siguientes: " + Arrays.toString(cochesLeidos));
+		// Con un if para comunicar un posible error
+		if (cochesLeidos != null) {
+			System.out.println("\nLos datos de los coches leídos son los siguientes: " + Arrays.toString(cochesLeidos));
+		} else {
+			System.out.println("Ha habido un error a la hora de encontra o escribir en el fichero.");
+		}
 
 	}
 
