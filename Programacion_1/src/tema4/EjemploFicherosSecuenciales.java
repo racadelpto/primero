@@ -1,11 +1,50 @@
 package tema4;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class EjemploFicherosSecuenciales {
+
+	public static void lecturaSecuencial(String rutaFichero) {
+
+		// Definimos los objetos para la lectura
+		try {
+			FileInputStream fin = new FileInputStream(rutaFichero);
+			DataInputStream din = new DataInputStream(fin);
+
+			Libros libroLectura = new Libros();
+
+			// Leemos los datos del fichero en el mismo orden en el que se escribieron
+			libroLectura.setNombre(din.readUTF());
+			libroLectura.setAutor(din.readUTF());
+			libroLectura.setCategoria(din.read());
+			libroLectura.setEjemplaresVendidos(din.read());
+			libroLectura.setNumPaginas(din.read());
+			libroLectura.setPrestado(din.readBoolean());
+			libroLectura.setDiaPrestamo(din.read());
+			libroLectura.setAnioPublicacion(din.read());
+			libroLectura.setIsbn(din.readUTF());
+
+			System.out.println("Libro leído: " + libroLectura.toString());
+
+			// Cerramos los stream de los ficheros
+			din.close();
+			fin.close();
+			// Controlamos las excepciones con los posibles fallos que podemos tener al leer
+			// ficheros
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		} catch (IOException ioe) {
+
+			ioe.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -48,6 +87,8 @@ public class EjemploFicherosSecuenciales {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
+
+		lecturaSecuencial("c:\\logs\\ficheroSecuencial.dat");
 
 	}
 

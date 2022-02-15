@@ -203,4 +203,15 @@ public class Libros {
 		return isbn;
 	}
 
+	public void setIsbn(String Isbn) {
+		this.isbn = Isbn;
+	}
+
+	@Override
+	public String toString() {
+		return "Libros [nombre=" + nombre + ", autor=" + autor + ", categoria=" + categoria + ", ejemplaresVendidos="
+				+ ejemplaresVendidos + ", numPaginas=" + numPaginas + ", prestado=" + prestado + ", diaPrestamo="
+				+ diaPrestamo + ", anioPublicacion=" + anioPublicacion + ", isbn=" + isbn + "]";
+	}
+
 }
