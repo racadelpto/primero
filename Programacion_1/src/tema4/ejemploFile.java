@@ -8,8 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import Tronan.Libros;
-
 public class ejemploFile {
 
 	public static final String RUTA = "c:\\logs\\";
