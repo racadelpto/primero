@@ -7,6 +7,10 @@ public class LecturaEscrituraCoches {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		/**
+		 * Pruebas para los 3 ejercicios de ficheros sobre la clase Coche
+		 */
+		
 		// Creamos un array de Coche de tamaño 5
 		Coche[] arrayCoches = new Coche[5];
 
@@ -18,25 +22,6 @@ public class LecturaEscrituraCoches {
 			arrayCoches[i] = new Coche((int) (Math.random() * 100 + 1), "Coche" + (i + 1), "Corvette", "Mercedes",
 					(int) (Math.random() * 1000 + 1), Coche.AMARILLO, (int) (Math.random() * 100 + 1), new Rueda[4],
 					new Suspension[4]);
-
-			for (int j = 0; j < arrayCoches[i].getRuedas().length; j++) {
-				arrayCoches[i].getRuedas()[j] = new Rueda();
-
-				switch (j) {
-				case 0:
-					arrayCoches[i].getRuedas()[j].setlugarRueda(" delantera derecha");
-					break;
-				case 1:
-					arrayCoches[i].getRuedas()[j].setlugarRueda(" delantera izquierda");
-					break;
-				case 2:
-					arrayCoches[i].getRuedas()[j].setlugarRueda(" trasera derecha");
-					break;
-				case 3:
-					arrayCoches[i].getRuedas()[j].setlugarRueda(" trasera izquierda");
-					break;
-				}
-			}
 		}
 
 		// Probamos la primera función guardarCoches. Debemos usar un objeto de la clase
@@ -46,7 +31,7 @@ public class LecturaEscrituraCoches {
 		// fichero destino
 		// Usamos un switch para los casos en los que de error poder comunicarlo
 		// Se generará un fichero con los datos de los coches contenidos en ese array
-		// Se incluye la captura en la aunque en la tercera función se usara ese fichero
+		// Se incluye la captura del fichero de texto en el que se generan los datos aunque en la tercera función se usara ese fichero
 		// para leer los datos y almacenarlos en un
 		// array Coche
 
@@ -68,12 +53,12 @@ public class LecturaEscrituraCoches {
 		// Usamos el fichero creado con la primera función como referencia
 
 		if (arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt") > -1) {
-			System.out.println("La cantidad de líneas que tiene el fichero creado en la primera función es: "
+			System.out.println("\nLa cantidad de líneas que tiene el fichero creado en la primera función es: "
 					+ arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt"));
 		} else if (arrayCoches[0].contarLineas("c:\\logs\\arrayCoches.txt") == Coche.ERROR_FICHERO) {
-			System.out.println("El fichero no se ha encontrado o no tenemos permisos");
+			System.out.println("\nEl fichero no se ha encontrado o no tenemos permisos");
 		} else {
-			System.out.println("Ha habido un problema al escribir o leer del fichero");
+			System.out.println("\nHa habido un problema al escribir o leer del fichero");
 		}
 
 		// Finalmente probamos la tercera función
@@ -87,7 +72,7 @@ public class LecturaEscrituraCoches {
 		if (cochesLeidos != null) {
 			System.out.println("\nLos datos de los coches leídos son los siguientes: " + Arrays.toString(cochesLeidos));
 		} else {
-			System.out.println("Ha habido un error a la hora de encontra o escribir en el fichero.");
+			System.out.println("\nHa habido un error a la hora de encontrar o escribir en el fichero.");
 		}
 
 	}

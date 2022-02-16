@@ -187,7 +187,7 @@ public class Coche {
 	 * @param listaCoches
 	 * @param ficheroDestino
 	 * @return un número dependiendo de si ha funcionado correctamente o hay algún
-	 *         errorw
+	 *         error
 	 */
 	public int guardarCoches(Coche listaCoches[], String ficheroDestino) {
 
@@ -214,6 +214,7 @@ public class Coche {
 			// Cerramos los objetos fw y pw
 			fw.close();
 			pw.close();
+			
 		} // Si da el error FileNotFoundException
 		catch (FileNotFoundException e) {
 			// Se comunica el error
@@ -236,7 +237,7 @@ public class Coche {
 	}
 
 	/**
-	 * Una función que que recibe un fichero como parámetro y cuenta las líneas que
+	 * Una función que recibe un fichero como parámetro y cuenta las líneas que
 	 * este tiene
 	 * 
 	 * @param fichero
@@ -268,12 +269,12 @@ public class Coche {
 
 				// linea pasa a ser la siguiente linea leida por br
 				linea = br.readLine();
-
 			}
 
 			// Cerramos fr y br
 			fr.close();
 			br.close();
+			
 		} // Si da el error FileNotFoundException
 		catch (FileNotFoundException e) {
 			// Se comunica el error
@@ -367,12 +368,10 @@ public class Coche {
 
 					// Sumamos 1 a contador
 					contador++;
-
 				}
 
 				// linea pasa a ser la siguiente línea leída
 				linea = br.readLine();
-
 			}
 
 			// Cerramos el fr y el br
