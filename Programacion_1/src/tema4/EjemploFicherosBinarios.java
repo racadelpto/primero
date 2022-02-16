@@ -9,7 +9,14 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
+
 public class EjemploFicherosBinarios {
+
+	static Logger logBinario = (Logger) LoggerFactory.getLogger("Consola");
+	static Logger logBinarioError = (Logger) LoggerFactory.getLogger("ejercicio2Logs");
 
 	// Constantes para definir los posibles errores
 	public static final int ERROR_FILENOTFOUND = -1;
@@ -56,6 +63,9 @@ public class EjemploFicherosBinarios {
 		byte[] bufferLectura = new byte[200];
 
 		try {
+
+			logBinario.info("Se intenta copiar el archivo desde " + rutaOrigen + " a " + rutaDestino);
+
 			FileInputStream fi = new FileInputStream(fichOrigen);
 
 			// Para escribir no necesitamos previamente el objeto File
@@ -95,9 +105,11 @@ public class EjemploFicherosBinarios {
 
 			e.printStackTrace();
 			resultado = ERROR_FILENOTFOUND;
+			logBinarioError.error("No se ha podido encontrar el fichero. Ruta: " + rutaOrigen);
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 			resultado = ERROR_LECTURA;
+			logBinarioError.error("Se ha producido un error de lectura.");
 		}
 
 		return resultado;
