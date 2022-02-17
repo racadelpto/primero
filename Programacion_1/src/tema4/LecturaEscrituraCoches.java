@@ -1,5 +1,7 @@
 package tema4;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Arrays;
 
 public class LecturaEscrituraCoches {
@@ -89,7 +91,6 @@ public class LecturaEscrituraCoches {
 		} else {
 			System.out.println("Ha habido un error a la hora de encontra o escribir en el fichero.");
 		}
-
 	}
 
 }
