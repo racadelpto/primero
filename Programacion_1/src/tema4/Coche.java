@@ -233,7 +233,6 @@ public class Coche {
 
 		// Devolvemos 0 si llegamos hasta aquí
 		return 0;
-
 	}
 
 	/**
@@ -313,34 +312,15 @@ public class Coche {
 
 			// Creamos un objeto BufferedReader con el objeto FileReader como referencia
 			BufferedReader br = new BufferedReader(fr);
-
-			// Creamos una String linea que almacena la linea que lee el br
-			String linea = br.readLine();
-
-			// Creamos un int cantidadCoches y lo inicializamos a 0
-			int cantidadCoches = 0;
-
-			// Mientras linea sea diferente de null
-			while (linea != null) {
-				// Vamos sumando 1 a cantidadCoches
-				cantidadCoches++;
-
-				// linea pasa a ser la siguiente linea leída por br
-				linea = br.readLine();
-			}
-
+			
+			//Inicializamos int cantidadCoches al resultado de la función contarLineas con rutaFichero como referencia
+			int cantidadCoches = contarLineas(rutaFichero);
+			
 			// Creamos un array de Coche con cantidadCoches como tamaño
 			Coche[] arrayCoches = new Coche[cantidadCoches];
 
-			// Definimos de nuevo el objeto FileReader para resetear el fichero y empezar
-			// desde el principio
-			fr = new FileReader(ficheroALeer);
-
-			// Hacemos lo mismo con el BufferedReader
-			br = new BufferedReader(fr);
-
 			// Almacenamos en linea la linea leída por el br
-			linea = br.readLine();
+			String linea = br.readLine();
 
 			// Creamos un int contador y lo inicializamos a 0
 			int contador = 0;
@@ -396,7 +376,6 @@ public class Coche {
 			// Devolvemos null
 			return null;
 		}
-
 	}
 
 	/*
