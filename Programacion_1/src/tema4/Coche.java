@@ -187,7 +187,7 @@ public class Coche {
 	 * @param listaCoches
 	 * @param ficheroDestino
 	 * @return un número dependiendo de si ha funcionado correctamente o hay algún
-	 *         errorw
+	 *         error
 	 */
 	public int guardarCoches(Coche listaCoches[], String ficheroDestino) {
 
@@ -214,6 +214,7 @@ public class Coche {
 			// Cerramos los objetos fw y pw
 			fw.close();
 			pw.close();
+
 		} // Si da el error FileNotFoundException
 		catch (FileNotFoundException e) {
 			// Se comunica el error
@@ -232,12 +233,11 @@ public class Coche {
 
 		// Devolvemos 0 si llegamos hasta aquí
 		return 0;
-
 	}
 
 	/**
-	 * Una función que que recibe un fichero como parámetro y cuenta las líneas que
-	 * este tiene
+	 * Una función que recibe un fichero como parámetro y cuenta las líneas que este
+	 * tiene
 	 * 
 	 * @param fichero
 	 * @return el número de líneas que tenga o error en el caso que lo haya
@@ -268,12 +268,12 @@ public class Coche {
 
 				// linea pasa a ser la siguiente linea leida por br
 				linea = br.readLine();
-
 			}
 
 			// Cerramos fr y br
 			fr.close();
 			br.close();
+
 		} // Si da el error FileNotFoundException
 		catch (FileNotFoundException e) {
 			// Se comunica el error
@@ -313,26 +313,8 @@ public class Coche {
 			// Creamos un objeto BufferedReader con el objeto FileReader como referencia
 			BufferedReader br = new BufferedReader(fr);
 
-			/**
-			 * Antes de darme cuenta de que podía hacer uso de la función contarLineas para
-			 * determinar el tamaño del array, realicé el siguiente código. Simplemente dejo
-			 * constancia del código que realice antes de darme cuenta de la función
-			 * contarLineas
-			 * 
-			 * // Creamos una String linea que almacena la linea que lee el br String linea
-			 * = br.readLine();
-			 * 
-			 * // Creamos un int cantidadCoches y lo inicializamos a 0 int cantidadCoches =
-			 * 0;
-			 * 
-			 * // Mientras linea sea diferente de null while (linea != null) { // Vamos
-			 * sumando 1 a cantidadCoches cantidadCoches++;
-			 * 
-			 * // linea pasa a ser la siguiente linea leída por br linea = br.readLine(); }
-			 */
-
-			// Creamos un int cantidadCoches y lo igualamos al valor que nos devuelva
-			// la función contarLinear con rutaFichero como referencia
+			// Inicializamos int cantidadCoches al resultado de la función contarLineas con
+			// rutaFichero como referencia
 			int cantidadCoches = contarLineas(rutaFichero);
 
 			// Creamos un array de Coche con cantidadCoches como tamaño
@@ -367,12 +349,10 @@ public class Coche {
 
 					// Sumamos 1 a contador
 					contador++;
-
 				}
 
 				// linea pasa a ser la siguiente línea leída
 				linea = br.readLine();
-
 			}
 
 			// Cerramos el fr y el br
@@ -397,7 +377,6 @@ public class Coche {
 			// Devolvemos null
 			return null;
 		}
-
 	}
 
 	/*
