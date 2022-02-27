@@ -12,6 +12,7 @@ public class GestionFicheros {
 	public static final int TIPO_ERROR = -4;
 	public static final int FICHERO_EXISTE = -5;
 	public static final int ERROR_ESCRITURA = -6;
+	public static final boolean NO_ES_DIRECTORIO = false;
 
 	public static int eliminarFichero(String rutaFichero) {
 
@@ -28,6 +29,45 @@ public class GestionFicheros {
 		return resultado;
 	}
 
+	/**
+	 * Devuelve null si el directorio esta vacio y Ok si no
+	 * La salida logica seria true o false, pero es para testear con junit
+	 * @param rutaDirectorio
+	 * @return
+	 */
+	public static String directorioVacioClase(String rutaDirectorio)
+	{
+		//Definimos la variables que guarda el resultado
+		String resultado = null;
+		
+		File directorio = new File(rutaDirectorio);
+		if (!directorio.isDirectory())
+		{
+			resultado = null;
+			System.out.println("No es un directorio");
+		}
+		else
+		{
+			
+			//Con esta funcion nos devuelve un array de file
+			//Y podemos modificarlos y hacer lo que queramos
+			//
+			//File listaficheros[] = fichero.listFiles()
+		
+			String listaFicheros[] = directorio.list();
+			
+			System.out.println("El directorio contiene " + listaFicheros.length);
+			
+			if (listaFicheros.length==0)
+				resultado = "OK";
+			else
+				resultado = null;
+		}
+		
+		//Devolvemos el resultado de la operacion
+		return resultado;
+	}
+	
 	public static int mostrarContenidoDirectorio(String rutaDirectorio) {
 
 		// Definimos la variable que guarda el resultado
@@ -212,7 +252,7 @@ public class GestionFicheros {
 			for (int i = 0; i < listaFicheros.length; i++) {
 
 				// Si el tamaño de listaFicheros[i] es mayor que size
-				if (listaFicheros[i].getTotalSpace() > size) {
+				if (listaFicheros[i].length() > size) {
 
 					// Borramos listaFicheros[i]
 					listaFicheros[i].delete();
@@ -247,6 +287,10 @@ public class GestionFicheros {
 			// Creamos un array listaFicheros de tipo File que almacena los ficheros de
 			// fichero
 			File[] listaFicheros = fichero.listFiles();
+			
+			//Creamos un int contadorFicheros para en el caso de que no haya ningún fichero que mostrar por pantalla
+			//poder mostrar un mensaje 
+			int contadorFicheros = 0;
 
 			// Con un for recorremos el array listaFicheros
 			for (int i = 0; i < listaFicheros.length; i++) {
@@ -256,9 +300,19 @@ public class GestionFicheros {
 				// equivale dias)
 				if (System.currentTimeMillis() - listaFicheros[i].lastModified() < (dias * 86400000)) {
 
+					//Sumamos 1 a contadorFicheros;
+					contadorFicheros++;
+					
 					// Expresamos por pantalla listaFicheros[i]
 					System.out.println(listaFicheros[i]);
 				}
+			}
+			
+			//Si contadorFicheros es igual a 0
+			if(contadorFicheros==0) {
+				
+				//Expresamos el siguiente mensaje por pantalla
+				System.out.println("No hay ningún fichero con una fecha de modificación más moderna que hace los días introducidos por parámetro.");
 			}
 		}
 
@@ -277,19 +331,27 @@ public class GestionFicheros {
 		// Creamos directorio de tipo File con rutaDirectorio como parámetro
 		File directorio = new File(rutaDirectorio);
 
-		// Creamos un array listaFicheros con la lista de ficheros de directorio como
-		// contenido
-		String[] listaFicheros = directorio.list();
-
-		// Si la longitud de listaFicheros es igual a 0
-		if (listaFicheros.length == 0) {
-			// Devolvemos true
-			return true;
-		} // Si no
+		if (!directorio.isDirectory()) {
+			// Devolvemos TIPO_ERROR
+			return NO_ES_DIRECTORIO;
+		} // Si sí
 		else {
-			// Devolvemos false
-			return false;
+			
+			// Creamos un array listaFicheros con la lista de ficheros de directorio como
+			// contenido
+			String[] listaFicheros = directorio.list();
+			
+			// Si la longitud de listaFicheros es igual a 0
+			if (listaFicheros.length == 0) {
+				// Devolvemos true
+				return true;
+			} // Si no
+			else {
+				// Devolvemos false
+				return false;
+			}
 		}
+		
 	}
 
 }
