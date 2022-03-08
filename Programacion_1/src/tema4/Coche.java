@@ -212,8 +212,8 @@ public class Coche {
 			}
 
 			// Cerramos los objetos fw y pw
-			fw.close();
 			pw.close();
+			fw.close();
 
 		} // Si da el error FileNotFoundException
 		catch (FileNotFoundException e) {
@@ -271,8 +271,8 @@ public class Coche {
 			}
 
 			// Cerramos fr y br
-			fr.close();
 			br.close();
+			fr.close();
 
 		} // Si da el error FileNotFoundException
 		catch (FileNotFoundException e) {
@@ -356,8 +356,8 @@ public class Coche {
 			}
 
 			// Cerramos el fr y el br
-			fr.close();
 			br.close();
+			fr.close();
 
 			// Devolvemos el arrayCoches
 			return arrayCoches;
