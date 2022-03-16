@@ -7,7 +7,7 @@ public class JuegoBarcosMain {
 
 		JuegoBarcos hundir = new JuegoBarcos();
 
-		hundir.mostrarTablero();
+		hundir.ejecutarJuego();
 
 	}
 
