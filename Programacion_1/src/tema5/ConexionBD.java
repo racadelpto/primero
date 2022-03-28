@@ -25,7 +25,7 @@ public class ConexionBD {
 	public static Connection conectarBD() {
 		// Parametros para la conexion a BD
 		String user = "root";
-		String password = "";
+		String password = "admin";
 		String url = "jdbc:mysql://localhost:3306/grandslam";
 		// Conexion para acceder a BD
 		Connection con = null;
