@@ -31,8 +31,7 @@ public class PrincipalBD {
 
 		teclado.close();
 */
-		
-		JugadorDAO.mostrarJugadores();
+JugadorDAO.mostrarJugadores();
 		
 		for (int i=10;i<=40;i++)
 		{
@@ -51,6 +50,8 @@ public class PrincipalBD {
 		JugadorDAO.actualizarJugador(raulm);
 		
 		JugadorDAO.mostrarJugadores(3,10);
+		
+		JugadorDAO.eliminarJugador(39);
 	}
 
 }

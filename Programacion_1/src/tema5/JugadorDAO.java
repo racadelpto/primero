@@ -232,34 +232,25 @@ public class JugadorDAO {
 
 	public static int eliminarJugador(int idJugador) {
 
-		int resultado = 1;
+		int resultado = 0;
 
 		Connection con = null;
 
 		con = ConexionBD.conectarBD();
 
-		String query = "SELECT * from jugador";
+		String query = "DELETE from jugador WHERE idjugador = ?";
 
 		try {
 
 			PreparedStatement pStmt = con.prepareStatement(query);
 
-			ResultSet res = pStmt.executeQuery();
+			pStmt.setInt(1, idJugador);
 
-			int id = 0;
-
-			while (res.next()) {
-
-				id = res.getInt("id");
-
-				if (id == idJugador) {
-
-					res.deleteRow();
-
-					resultado = 0;
-
-				}
-			}
+			resultado = pStmt.executeUpdate();
+			
+			pStmt.close();
+			
+			con.close();
 
 		} catch (SQLException e) {
 
