@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 
 import utils.ConexionBD;
@@ -44,13 +45,78 @@ public class CampeonatoDAO {
 	
 	public static int insertar(CampeonatoVO campeonato) {
 		
-		Connection con = ConexionBD.conectarBD();
+		int resultado = 0;
 		
 		if(campeonato==null) {
-			return 0;
+			return resultado;
 		}
 		
-		return 0;
+		String query = "INSERT into campeonato values(?,?,?,?,?,?)";
+		
+		Connection con = ConexionBD.conectarBD();
+		
+		
+		try {
+			
+			PreparedStatement pStmt = con.prepareStatement(query);
+			
+			if(campeonato.getIdCampeonato()==null || campeonato.getIdCampeonato().equals("")) {
+				return resultado;
+			} else {
+				
+				pStmt.setString(1, campeonato.getIdCampeonato());
+			}
+			
+			if(campeonato.getNombre()!=null && !campeonato.getNombre().equals("")) {
+				
+				pStmt.setString(2, campeonato.getNombre());
+			} else {
+				
+				pStmt.setString(2, null);
+			}
+			
+			if(campeonato.getYear()>0) {
+				
+				pStmt.setInt(3, campeonato.getYear());
+			} else {
+				
+				pStmt.setString(3, null);
+			}
+			
+			if(campeonato.getNumPilotos()>0) {
+
+				pStmt.setInt(4, campeonato.getNumPilotos());
+			} else {
+				
+				pStmt.setString(4, null);
+			}
+
+			if(campeonato.getNumCircuitos()>0) {
+
+				pStmt.setInt(5, campeonato.getNumCircuitos());
+			} else {
+				
+				pStmt.setString(5, null);
+			}
+			
+			if(campeonato.getPilotoGanador()!=null && !campeonato.getPilotoGanador().equals("")) {
+				
+				pStmt.setString(6, campeonato.getPilotoGanador());
+			} else {
+				
+				pStmt.setString(6, null);
+			}
+			
+			resultado = pStmt.executeUpdate();
+			
+			pStmt.close();
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		
+		return resultado;
 	}
 	
 	public static int actualizar(CampeonatoVO campeonato) {
@@ -69,7 +135,7 @@ public class CampeonatoDAO {
 		}
 		
 		if(campeonato.getNombre()!=null && !campeonato.getNombre().equals("")) {
-			query += "Nombre ?";
+			query += "Nombre = ?";
 			
 			posicion++;
 		}
@@ -77,9 +143,9 @@ public class CampeonatoDAO {
 		if(campeonato.getYear()>0) {
 			
 			if(posicion==1) {
-				query += "Año ?";
+				query += "Año = ?";
 			} else {
-				query += ", Año ?";
+				query += ", Año = ?";
 			}
 			
 			posicion++;
@@ -88,9 +154,9 @@ public class CampeonatoDAO {
 		if(campeonato.getNumPilotos()>0) {
 
 			if(posicion==1) {
-				query += "numPilotos ?";
+				query += "numPilotos = ?";
 			} else {
-				query += ", numPilotos ?";
+				query += ", numPilotos = ?";
 			}
 
 			posicion++;
@@ -99,9 +165,9 @@ public class CampeonatoDAO {
 		if(campeonato.getNumCircuitos()>0) {
 
 			if(posicion==1) {
-				query += "numCircuitos ?";
+				query += "numCircuitos = ?";
 			} else {
-				query += ", numCircuitos ?";
+				query += ", numCircuitos = ?";
 			}
 
 			posicion++;
@@ -110,9 +176,9 @@ public class CampeonatoDAO {
 		if(campeonato.getPilotoGanador()!=null && !campeonato.getPilotoGanador().equals("")) {
 			
 			if(posicion==1) {
-				query += "pilotoGanador ?";
+				query += "pilotoGanador = ?";
 			} else {
-				query += ", pilotoGanador ?";
+				query += ", pilotoGanador = ?";
 			}
 			
 			posicion++;
@@ -161,7 +227,11 @@ public class CampeonatoDAO {
 				posicion++;
 			}
 			
+			System.out.println(query);
+			
 			pStmt.setString(posicion, campeonato.getIdCampeonato());
+			
+			System.out.println(pStmt.toString());
 			
 			resultado = pStmt.executeUpdate();
 			
@@ -224,15 +294,7 @@ public class CampeonatoDAO {
 			ResultSet res = pStmt.executeQuery();
 			
 			while(res.next()) {
-				CarreraVO carrera = new CarreraVO();
-				
-				carrera.setIdCarrera(res.getString("idCarrera"));
-				carrera.setNumVueltas(res.getInt("numVueltas"));
-				carrera.setVueltaRapida(res.getDouble("vueltaRapida"));
-				carrera.setNumAccidentes(res.getInt("numAccidentes"));
-				carrera.setFecha(res.getString("Fecha"));
-				carrera.setIdCircuito(res.getString("Circuito_idCircuito"));
-				carrera.setIdCampeonato(res.getString("Campeonato_idCampeonato"));
+				CarreraVO carrera = CarreraDAO.cargar(res.getString("idCarrera"));
 				
 				carreras.add(carrera);
 			}

@@ -39,6 +39,82 @@ public class CocheDAO {
 		return resultado;
 	}
 
+	public static int insertar(CocheVO coche) {
+		
+		int resultado = 0;
+		
+		if(coche==null) {
+			return resultado;
+		}
+		
+		String query = "INSERT into coche values(?,?,?,?,?,?)";
+		
+		Connection con = ConexionBD.conectarBD();
+		
+		
+		try {
+			
+			PreparedStatement pStmt = con.prepareStatement(query);
+			
+			if(coche.getIdCoche()==null || coche.getIdCoche().equals("")) {
+				return resultado;
+			} else {
+				
+				pStmt.setString(1, coche.getIdCoche());
+			}
+			
+			if(coche.getMarca()!=null && !coche.getMarca().equals("")) {
+				
+				pStmt.setString(2, coche.getMarca());
+			} else {
+				
+				pStmt.setString(2, null);
+			}
+			
+			if(coche.getModelo()!=null && !coche.getModelo().equals("")) {
+				
+				pStmt.setString(3, coche.getModelo());
+			} else {
+				
+				pStmt.setString(3, null);
+			}
+			
+			if(coche.getPeso()>0) {
+
+				pStmt.setInt(4, coche.getPeso());
+			} else {
+				
+				pStmt.setString(4, null);
+			}
+
+			if(coche.getPotencia()>0) {
+
+				pStmt.setInt(5, coche.getPotencia());
+			} else {
+				
+				pStmt.setString(5, null);
+			}
+			
+			if(coche.getIdPiloto()!=null && !coche.getIdPiloto().equals("")) {
+				
+				pStmt.setString(6, coche.getIdPiloto());
+			} else {
+				
+				pStmt.setString(6, null);
+			}
+			
+			resultado = pStmt.executeUpdate();
+			
+			pStmt.close();
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
 	public static int actualizar(CocheVO coche) {
 
 		int resultado = 0;
@@ -55,7 +131,7 @@ public class CocheDAO {
 		}
 
 		if(coche.getMarca()!=null && !coche.getMarca().equals("")) {
-			query += "Marca ?";
+			query += "Marca = ?";
 
 			posicion++;
 		}
@@ -63,9 +139,9 @@ public class CocheDAO {
 		if(coche.getModelo()!=null && !coche.getModelo().equals("")) {
 
 			if(posicion==1) {
-				query += "Modelo ?";
+				query += "Modelo = ?";
 			} else {
-				query += ", Modelo ?";
+				query += ", Modelo = ?";
 			}
 
 			posicion++;
@@ -74,9 +150,9 @@ public class CocheDAO {
 		if(coche.getPeso()>0) {
 
 			if(posicion==1) {
-				query += "Peso ?";
+				query += "Peso = ?";
 			} else {
-				query += ", Peso ?";
+				query += ", Peso = ?";
 			}
 
 			posicion++;
@@ -85,9 +161,9 @@ public class CocheDAO {
 		if(coche.getPotencia()>0) {
 
 			if(posicion==1) {
-				query += "Potencia ?";
+				query += "Potencia = ?";
 			} else {
-				query += ", Potencia ?";
+				query += ", Potencia = ?";
 			}
 
 			posicion++;
@@ -96,9 +172,9 @@ public class CocheDAO {
 		if(coche.getIdPiloto()!=null && !coche.getIdPiloto().equals("")) {
 
 			if(posicion==1) {
-				query += "Piloto_idPiloto ?";
+				query += "Piloto_idPiloto = ?";
 			} else {
-				query += ", Piloto_idPiloto ?";
+				query += ", Piloto_idPiloto = ?";
 			}
 
 			posicion++;

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 
 import utils.ConexionBD;
@@ -44,13 +45,86 @@ public class CarreraDAO {
 
 	public static int insertar(CarreraVO carrera) {
 
-		Connection con = ConexionBD.conectarBD();
-
+		int resultado = 0;
+		
 		if(carrera==null) {
-			return 0;
+			return resultado;
 		}
+		
+		String query = "INSERT into carrera values(?,?,?,?,?,?,?)";
+		
+		Connection con = ConexionBD.conectarBD();
+		
+		
+		try {
+			
+			PreparedStatement pStmt = con.prepareStatement(query);
+			
+			if(carrera.getIdCarrera()==null || carrera.getIdCarrera().equals("")) {
+				return resultado;
+			} else {
+				
+				pStmt.setString(1, carrera.getIdCarrera());
+			}
+			
+			if(carrera.getNumVueltas()>0) {
+				
+				pStmt.setInt(2, carrera.getNumVueltas());
+			} else {
+				
+				pStmt.setNull(2, Types.INTEGER);
+			}
+			
+			if(carrera.getVueltaRapida()>0) {
+				
+				pStmt.setDouble(3, carrera.getVueltaRapida());
+			} else {
+			
+				pStmt.setNull(3, Types.DOUBLE);
+			}
+			
+			if(carrera.getNumAccidentes()>-1) {
 
+				pStmt.setInt(4, carrera.getNumAccidentes());
+			} else {
+				
+				pStmt.setString(4, null);
+			}
 
+			if(carrera.getFecha()!=null && !carrera.getFecha().equals("")) {
+
+				pStmt.setString(5, carrera.getFecha());
+			} else {
+				
+				pStmt.setString(5, null);
+			}
+			
+			if(carrera.getIdCircuito()!=null && !carrera.getIdCircuito().equals("")) {
+				
+				pStmt.setString(6, carrera.getIdCircuito());
+			} else {
+				
+				pStmt.setString(6, null);
+			}
+			
+			if(carrera.getIdCampeonato()!=null && !carrera.getIdCampeonato().equals("")) {
+				
+				pStmt.setString(7, carrera.getIdCampeonato());
+			} else {
+				
+				pStmt.setString(7, null);
+			}
+
+			resultado = pStmt.executeUpdate();
+			
+			pStmt.close();
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		
+		return resultado;
 	}
 
 	public static int actualizar(CarreraVO carrera) {
@@ -68,7 +142,7 @@ public class CarreraDAO {
 		}
 
 		if(carrera.getNumVueltas()>0) {
-			query += "numVueltas ?";
+			query += "numVueltas = ?";
 
 			posicion++;
 		}
@@ -76,9 +150,9 @@ public class CarreraDAO {
 		if(carrera.getVueltaRapida()>0) {
 
 			if(posicion==1) {
-				query += "vueltaRapida ?";
+				query += "vueltaRapida = ?";
 			} else {
-				query += ", vueltaRapida ?";
+				query += ", vueltaRapida = ?";
 			}
 
 			posicion++;
@@ -87,9 +161,9 @@ public class CarreraDAO {
 		if(carrera.getNumAccidentes()>0) {
 
 			if(posicion==1) {
-				query += "numAccidentes ?";
+				query += "numAccidentes = ?";
 			} else {
-				query += ", numAccidentes ?";
+				query += ", numAccidentes = ?";
 			}
 
 			posicion++;
@@ -98,9 +172,9 @@ public class CarreraDAO {
 		if(carrera.getFecha()!=null && !carrera.getFecha().equals("")) {
 
 			if(posicion==1) {
-				query += "Fecha ?";
+				query += "Fecha = ?";
 			} else {
-				query += ", Fecha ?";
+				query += ", Fecha = ?";
 			}
 
 			posicion++;
@@ -109,9 +183,9 @@ public class CarreraDAO {
 		if(carrera.getIdCircuito()!=null && !carrera.getIdCircuito().equals("")) {
 
 			if(posicion==1) {
-				query += "Circuito_idCircuito ?";
+				query += "Circuito_idCircuito = ?";
 			} else {
-				query += ", Circuito_idCircuito ?";
+				query += ", Circuito_idCircuito = ?";
 			}
 
 			posicion++;
@@ -120,9 +194,9 @@ public class CarreraDAO {
 		if(carrera.getIdCampeonato()!=null && !carrera.getIdCampeonato().equals("")) {
 
 			if(posicion==1) {
-				query += "Campeonato_idCampeonato ?";
+				query += "Campeonato_idCampeonato = ?";
 			} else {
-				query += ", Campeonato_idCampeonato ?";
+				query += ", Campeonato_idCampeonato = ?";
 			}
 
 			posicion++;

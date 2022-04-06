@@ -39,6 +39,82 @@ public class PilotoDAO {
 		return resultado;
 	}
 
+	public static int insertar(PilotoVO piloto) {
+		
+		int resultado = 0;
+		
+		if(piloto==null) {
+			return resultado;
+		}
+		
+		String query = "INSERT into piloto values(?,?,?,?,?,?)";
+		
+		Connection con = ConexionBD.conectarBD();
+		
+		
+		try {
+			
+			PreparedStatement pStmt = con.prepareStatement(query);
+			
+			if(piloto.getIdPiloto()==null || piloto.getIdPiloto().equals("")) {
+				return resultado;
+			} else {
+				
+				pStmt.setString(1, piloto.getIdPiloto());
+			}
+			
+			if(piloto.getdNI()!=null && !piloto.getdNI().equals("")) {
+				
+				pStmt.setString(2, piloto.getdNI());
+			} else {
+				
+				pStmt.setString(2, null);
+			}
+			
+			if(piloto.getNombre()!=null && !piloto.getNombre().equals("")) {
+				
+				pStmt.setString(3, piloto.getNombre());
+			} else {
+				
+				pStmt.setString(3, null);
+			}
+			
+			if(piloto.getEdad()>0) {
+
+				pStmt.setInt(4, piloto.getEdad());
+			} else {
+				
+				pStmt.setString(4, null);
+			}
+
+			if(piloto.getSexo()!=null && !piloto.getSexo().equals("")) {
+
+				pStmt.setString(5, piloto.getSexo());
+			} else {
+				
+				pStmt.setString(5, null);
+			}
+			
+			if(piloto.getDireccion()!=null && !piloto.getDireccion().equals("")) {
+				
+				pStmt.setString(6, piloto.getDireccion());
+			} else {
+				
+				pStmt.setString(6, null);
+			}
+			
+			resultado = pStmt.executeUpdate();
+			
+			pStmt.close();
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
 	public static int actualizar(PilotoVO piloto) {
 
 		int resultado = 0;
@@ -55,7 +131,7 @@ public class PilotoDAO {
 		}
 
 		if(piloto.getdNI()!=null && !piloto.getdNI().equals("")) {
-			query += "DNI ?";
+			query += "DNI = ?";
 
 			posicion++;
 		}
@@ -63,9 +139,9 @@ public class PilotoDAO {
 		if(piloto.getNombre()!=null && !piloto.getNombre().equals("")) {
 
 			if(posicion==1) {
-				query += "Nombre ?";
+				query += "Nombre = ?";
 			} else {
-				query += ", Nombre ?";
+				query += ", Nombre = ?";
 			}
 
 			posicion++;
@@ -74,9 +150,9 @@ public class PilotoDAO {
 		if(piloto.getEdad()>0) {
 
 			if(posicion==1) {
-				query += "Edad ?";
+				query += "Edad = ?";
 			} else {
-				query += ", Edad ?";
+				query += ", Edad = ?";
 			}
 
 			posicion++;
@@ -85,9 +161,9 @@ public class PilotoDAO {
 		if(piloto.getSexo()!=null && !piloto.getSexo().equals("")) {
 
 			if(posicion==1) {
-				query += "Sexo ?";
+				query += "Sexo = ?";
 			} else {
-				query += ", Sexo ?";
+				query += ", Sexo = ?";
 			}
 
 			posicion++;
@@ -96,9 +172,9 @@ public class PilotoDAO {
 		if(piloto.getDireccion()!=null && !piloto.getDireccion().equals("")) {
 
 			if(posicion==1) {
-				query += "Dirección ?";
+				query += "Dirección = ?";
 			} else {
-				query += ", Dirección ?";
+				query += ", Dirección = ?";
 			}
 
 			posicion++;
@@ -183,7 +259,7 @@ public class PilotoDAO {
 			piloto.setEdad(res.getInt("Edad"));
 			piloto.setSexo(res.getString("Sexo"));
 			piloto.setDireccion(res.getString("Dirección"));
-			piloto.setCoche(CocheDAO.cargar(codPiloto));
+			piloto.setCoche(PilotoDAO.cargar(codPiloto));
 
 			pStmt.close();
 
@@ -202,7 +278,7 @@ public class PilotoDAO {
 
 		Connection con = ConexionBD.conectarBD();
 
-		String query = "SELECT * from coche where idPiloto = ?";
+		String query = "SELECT * from coche where Piloto_idPiloto = ?";
 
 		try {
 			PreparedStatement pStmt = con.prepareStatement(query);
