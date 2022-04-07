@@ -40,78 +40,78 @@ public class CocheDAO {
 	}
 
 	public static int insertar(CocheVO coche) {
-		
+
 		int resultado = 0;
-		
-		if(coche==null) {
+
+		if (coche == null) {
 			return resultado;
 		}
-		
+
 		String query = "INSERT into coche values(?,?,?,?,?,?)";
-		
+
 		Connection con = ConexionBD.conectarBD();
-		
-		
+
 		try {
-			
+
 			PreparedStatement pStmt = con.prepareStatement(query);
-			
-			if(coche.getIdCoche()==null || coche.getIdCoche().equals("")) {
-				return resultado;
-			} else {
-				
+
+			if (coche.getIdCoche() == null || coche.getIdCoche().equals("")) {
+
 				pStmt.setString(1, coche.getIdCoche());
+			} else {
+
+				return resultado;
 			}
-			
-			if(coche.getMarca()!=null && !coche.getMarca().equals("")) {
-				
+
+			if (coche.getMarca() != null && !coche.getMarca().equals("")) {
+
 				pStmt.setString(2, coche.getMarca());
 			} else {
-				
-				pStmt.setString(2, null);
+
+				return resultado;
 			}
-			
-			if(coche.getModelo()!=null && !coche.getModelo().equals("")) {
-				
+
+			if (coche.getModelo() != null && !coche.getModelo().equals("")) {
+
 				pStmt.setString(3, coche.getModelo());
 			} else {
-				
-				pStmt.setString(3, null);
+
+				return resultado;
 			}
-			
-			if(coche.getPeso()>0) {
+
+			if (coche.getPeso() > 0) {
 
 				pStmt.setInt(4, coche.getPeso());
 			} else {
-				
-				pStmt.setString(4, null);
+
+				return resultado;
 			}
 
-			if(coche.getPotencia()>0) {
+			if (coche.getPotencia() > 0) {
 
 				pStmt.setInt(5, coche.getPotencia());
 			} else {
-				
-				pStmt.setString(5, null);
+
+				return resultado;
 			}
-			
-			if(coche.getIdPiloto()!=null && !coche.getIdPiloto().equals("")) {
-				
+
+			if (coche.getIdPiloto() != null && !coche.getIdPiloto().equals("")) {
+
 				pStmt.setString(6, coche.getIdPiloto());
 			} else {
-				
-				pStmt.setString(6, null);
+
+				return resultado;
 			}
-			
+
 			resultado = pStmt.executeUpdate();
-			
+
 			pStmt.close();
-			
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		
+
 		return resultado;
 	}
 
@@ -122,23 +122,23 @@ public class CocheDAO {
 
 		String query = "UPDATE coche SET ";
 
-		if(coche==null) {
+		if (coche == null) {
 			return resultado;
 		}
 
-		if(coche.getIdCoche()==null || coche.getIdCoche().equals("")) {
+		if (coche.getIdCoche() == null || coche.getIdCoche().equals("")) {
 			return resultado;
 		}
 
-		if(coche.getMarca()!=null && !coche.getMarca().equals("")) {
+		if (coche.getMarca() != null && !coche.getMarca().equals("")) {
 			query += "Marca = ?";
 
 			posicion++;
 		}
 
-		if(coche.getModelo()!=null && !coche.getModelo().equals("")) {
+		if (coche.getModelo() != null && !coche.getModelo().equals("")) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Modelo = ?";
 			} else {
 				query += ", Modelo = ?";
@@ -147,9 +147,9 @@ public class CocheDAO {
 			posicion++;
 		}
 
-		if(coche.getPeso()>0) {
+		if (coche.getPeso() > 0) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Peso = ?";
 			} else {
 				query += ", Peso = ?";
@@ -158,9 +158,9 @@ public class CocheDAO {
 			posicion++;
 		}
 
-		if(coche.getPotencia()>0) {
+		if (coche.getPotencia() > 0) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Potencia = ?";
 			} else {
 				query += ", Potencia = ?";
@@ -169,9 +169,9 @@ public class CocheDAO {
 			posicion++;
 		}
 
-		if(coche.getIdPiloto()!=null && !coche.getIdPiloto().equals("")) {
+		if (coche.getIdPiloto() != null && !coche.getIdPiloto().equals("")) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Piloto_idPiloto = ?";
 			} else {
 				query += ", Piloto_idPiloto = ?";
@@ -182,42 +182,42 @@ public class CocheDAO {
 
 		query = query.concat(" WHERE idCoche = ?");
 
-		if(posicion==1) {
+		if (posicion == 1) {
 			return 0;
 		}
 
-		Connection con = ConexionBD.conectarBD();	
+		Connection con = ConexionBD.conectarBD();
 
 		try {
 			PreparedStatement pStmt = con.prepareStatement(query);
 
 			posicion = 1;
 
-			if(coche.getMarca()!=null && !coche.getMarca().equals("")) {
+			if (coche.getMarca() != null && !coche.getMarca().equals("")) {
 
 				pStmt.setString(posicion, coche.getMarca());
 				posicion++;
 			}
 
-			if(coche.getModelo()!=null && !coche.getModelo().equals("")) {
+			if (coche.getModelo() != null && !coche.getModelo().equals("")) {
 
 				pStmt.setString(posicion, coche.getModelo());
 				posicion++;
 			}
 
-			if(coche.getPeso()>0) {
+			if (coche.getPeso() > 0) {
 
 				pStmt.setInt(posicion, coche.getPeso());
 				posicion++;
 			}
 
-			if(coche.getPotencia()>0) {
+			if (coche.getPotencia() > 0) {
 
 				pStmt.setInt(posicion, coche.getPotencia());
 				posicion++;
 			}
 
-			if(coche.getIdPiloto()!=null && !coche.getIdPiloto().equals("")) {
+			if (coche.getIdPiloto() != null && !coche.getIdPiloto().equals("")) {
 
 				pStmt.setString(posicion, coche.getIdPiloto());
 				posicion++;

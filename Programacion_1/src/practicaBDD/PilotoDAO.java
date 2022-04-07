@@ -40,78 +40,78 @@ public class PilotoDAO {
 	}
 
 	public static int insertar(PilotoVO piloto) {
-		
+
 		int resultado = 0;
-		
-		if(piloto==null) {
+
+		if (piloto == null) {
 			return resultado;
 		}
-		
+
 		String query = "INSERT into piloto values(?,?,?,?,?,?)";
-		
+
 		Connection con = ConexionBD.conectarBD();
-		
-		
+
 		try {
-			
+
 			PreparedStatement pStmt = con.prepareStatement(query);
-			
-			if(piloto.getIdPiloto()==null || piloto.getIdPiloto().equals("")) {
-				return resultado;
-			} else {
-				
+
+			if (piloto.getIdPiloto() != null || !piloto.getIdPiloto().equals("")) {
+
 				pStmt.setString(1, piloto.getIdPiloto());
+			} else {
+
+				return resultado;
 			}
-			
-			if(piloto.getdNI()!=null && !piloto.getdNI().equals("")) {
-				
+
+			if (piloto.getdNI() != null && !piloto.getdNI().equals("")) {
+
 				pStmt.setString(2, piloto.getdNI());
 			} else {
-				
-				pStmt.setString(2, null);
+
+				return resultado;
 			}
-			
-			if(piloto.getNombre()!=null && !piloto.getNombre().equals("")) {
-				
+
+			if (piloto.getNombre() != null && !piloto.getNombre().equals("")) {
+
 				pStmt.setString(3, piloto.getNombre());
 			} else {
-				
-				pStmt.setString(3, null);
+
+				return resultado;
 			}
-			
-			if(piloto.getEdad()>0) {
+
+			if (piloto.getEdad() > 0) {
 
 				pStmt.setInt(4, piloto.getEdad());
 			} else {
-				
-				pStmt.setString(4, null);
+
+				return resultado;
 			}
 
-			if(piloto.getSexo()!=null && !piloto.getSexo().equals("")) {
+			if (piloto.getSexo() != null && !piloto.getSexo().equals("")) {
 
 				pStmt.setString(5, piloto.getSexo());
 			} else {
-				
-				pStmt.setString(5, null);
+
+				return resultado;
 			}
-			
-			if(piloto.getDireccion()!=null && !piloto.getDireccion().equals("")) {
-				
+
+			if (piloto.getDireccion() != null && !piloto.getDireccion().equals("")) {
+
 				pStmt.setString(6, piloto.getDireccion());
 			} else {
-				
-				pStmt.setString(6, null);
+
+				return resultado;
 			}
-			
+
 			resultado = pStmt.executeUpdate();
-			
+
 			pStmt.close();
-			
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		
+
 		return resultado;
 	}
 
@@ -122,23 +122,23 @@ public class PilotoDAO {
 
 		String query = "UPDATE piloto SET ";
 
-		if(piloto==null) {
+		if (piloto == null) {
 			return resultado;
 		}
 
-		if(piloto.getIdPiloto()==null || piloto.getIdPiloto().equals("")) {
+		if (piloto.getIdPiloto() == null || piloto.getIdPiloto().equals("")) {
 			return resultado;
 		}
 
-		if(piloto.getdNI()!=null && !piloto.getdNI().equals("")) {
+		if (piloto.getdNI() != null && !piloto.getdNI().equals("")) {
 			query += "DNI = ?";
 
 			posicion++;
 		}
 
-		if(piloto.getNombre()!=null && !piloto.getNombre().equals("")) {
+		if (piloto.getNombre() != null && !piloto.getNombre().equals("")) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Nombre = ?";
 			} else {
 				query += ", Nombre = ?";
@@ -147,9 +147,9 @@ public class PilotoDAO {
 			posicion++;
 		}
 
-		if(piloto.getEdad()>0) {
+		if (piloto.getEdad() > 0) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Edad = ?";
 			} else {
 				query += ", Edad = ?";
@@ -158,9 +158,9 @@ public class PilotoDAO {
 			posicion++;
 		}
 
-		if(piloto.getSexo()!=null && !piloto.getSexo().equals("")) {
+		if (piloto.getSexo() != null && !piloto.getSexo().equals("")) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Sexo = ?";
 			} else {
 				query += ", Sexo = ?";
@@ -169,9 +169,9 @@ public class PilotoDAO {
 			posicion++;
 		}
 
-		if(piloto.getDireccion()!=null && !piloto.getDireccion().equals("")) {
+		if (piloto.getDireccion() != null && !piloto.getDireccion().equals("")) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Dirección = ?";
 			} else {
 				query += ", Dirección = ?";
@@ -182,42 +182,42 @@ public class PilotoDAO {
 
 		query = query.concat(" WHERE idPiloto = ?");
 
-		if(posicion==1) {
+		if (posicion == 1) {
 			return 0;
 		}
 
-		Connection con = ConexionBD.conectarBD();	
+		Connection con = ConexionBD.conectarBD();
 
 		try {
 			PreparedStatement pStmt = con.prepareStatement(query);
 
 			posicion = 1;
 
-			if(piloto.getdNI()!=null && !piloto.getdNI().equals("")) {
+			if (piloto.getdNI() != null && !piloto.getdNI().equals("")) {
 
 				pStmt.setString(posicion, piloto.getdNI());
 				posicion++;
 			}
 
-			if(piloto.getNombre()!=null && !piloto.getNombre().equals("")) {
+			if (piloto.getNombre() != null && !piloto.getNombre().equals("")) {
 
 				pStmt.setString(posicion, piloto.getNombre());
 				posicion++;
 			}
 
-			if(piloto.getEdad()>0) {
+			if (piloto.getEdad() > 0) {
 
 				pStmt.setInt(posicion, piloto.getEdad());
 				posicion++;
 			}
 
-			if(piloto.getSexo()!=null && !piloto.getSexo().equals("")) {
+			if (piloto.getSexo() != null && !piloto.getSexo().equals("")) {
 
 				pStmt.setString(posicion, piloto.getSexo());
 				posicion++;
 			}
 
-			if(piloto.getDireccion()!=null && !piloto.getDireccion().equals("")) {
+			if (piloto.getDireccion() != null && !piloto.getDireccion().equals("")) {
 
 				pStmt.setString(posicion, piloto.getDireccion());
 				posicion++;
@@ -306,8 +306,5 @@ public class PilotoDAO {
 
 		return coche;
 	}
-
-
-
 
 }

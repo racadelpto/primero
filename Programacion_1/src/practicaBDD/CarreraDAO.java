@@ -46,84 +46,84 @@ public class CarreraDAO {
 	public static int insertar(CarreraVO carrera) {
 
 		int resultado = 0;
-		
-		if(carrera==null) {
+
+		if (carrera == null) {
 			return resultado;
 		}
-		
+
 		String query = "INSERT into carrera values(?,?,?,?,?,?,?)";
-		
+
 		Connection con = ConexionBD.conectarBD();
-		
-		
+
 		try {
-			
+
 			PreparedStatement pStmt = con.prepareStatement(query);
-			
-			if(carrera.getIdCarrera()==null || carrera.getIdCarrera().equals("")) {
-				return resultado;
-			} else {
-				
+
+			if (carrera.getIdCarrera() == null || carrera.getIdCarrera().equals("")) {
+
 				pStmt.setString(1, carrera.getIdCarrera());
+			} else {
+
+				return resultado;
 			}
-			
-			if(carrera.getNumVueltas()>0) {
-				
+
+			if (carrera.getNumVueltas() > 0) {
+
 				pStmt.setInt(2, carrera.getNumVueltas());
 			} else {
-				
-				pStmt.setNull(2, Types.INTEGER);
+
+				return resultado;
 			}
-			
-			if(carrera.getVueltaRapida()>0) {
-				
+
+			if (carrera.getVueltaRapida() > 0) {
+
 				pStmt.setDouble(3, carrera.getVueltaRapida());
 			} else {
-			
-				pStmt.setNull(3, Types.DOUBLE);
+
+				return resultado;
 			}
-			
-			if(carrera.getNumAccidentes()>-1) {
+
+			if (carrera.getNumAccidentes() > -1) {
 
 				pStmt.setInt(4, carrera.getNumAccidentes());
 			} else {
-				
-				pStmt.setString(4, null);
+
+				return resultado;
 			}
 
-			if(carrera.getFecha()!=null && !carrera.getFecha().equals("")) {
+			if (carrera.getFecha() != null && !carrera.getFecha().equals("")) {
 
 				pStmt.setString(5, carrera.getFecha());
 			} else {
-				
-				pStmt.setString(5, null);
+
+				return resultado;
 			}
-			
-			if(carrera.getIdCircuito()!=null && !carrera.getIdCircuito().equals("")) {
-				
+
+			if (carrera.getIdCircuito() != null && !carrera.getIdCircuito().equals("")) {
+
 				pStmt.setString(6, carrera.getIdCircuito());
 			} else {
-				
-				pStmt.setString(6, null);
+
+				return resultado;
 			}
-			
-			if(carrera.getIdCampeonato()!=null && !carrera.getIdCampeonato().equals("")) {
-				
+
+			if (carrera.getIdCampeonato() != null && !carrera.getIdCampeonato().equals("")) {
+
 				pStmt.setString(7, carrera.getIdCampeonato());
 			} else {
-				
-				pStmt.setString(7, null);
+
+				return resultado;
 			}
 
 			resultado = pStmt.executeUpdate();
-			
+
 			pStmt.close();
-			
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		
+
 		return resultado;
 	}
 
@@ -133,23 +133,23 @@ public class CarreraDAO {
 
 		String query = "UPDATE carrera SET ";
 
-		if(carrera==null) {
+		if (carrera == null) {
 			return resultado;
 		}
 
-		if(carrera.getIdCarrera()==null || carrera.getIdCarrera().equals("")) {
+		if (carrera.getIdCarrera() == null || carrera.getIdCarrera().equals("")) {
 			return resultado;
 		}
 
-		if(carrera.getNumVueltas()>0) {
+		if (carrera.getNumVueltas() > 0) {
 			query += "numVueltas = ?";
 
 			posicion++;
 		}
 
-		if(carrera.getVueltaRapida()>0) {
+		if (carrera.getVueltaRapida() > 0) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "vueltaRapida = ?";
 			} else {
 				query += ", vueltaRapida = ?";
@@ -158,9 +158,9 @@ public class CarreraDAO {
 			posicion++;
 		}
 
-		if(carrera.getNumAccidentes()>0) {
+		if (carrera.getNumAccidentes() > 0) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "numAccidentes = ?";
 			} else {
 				query += ", numAccidentes = ?";
@@ -169,9 +169,9 @@ public class CarreraDAO {
 			posicion++;
 		}
 
-		if(carrera.getFecha()!=null && !carrera.getFecha().equals("")) {
+		if (carrera.getFecha() != null && !carrera.getFecha().equals("")) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Fecha = ?";
 			} else {
 				query += ", Fecha = ?";
@@ -180,9 +180,9 @@ public class CarreraDAO {
 			posicion++;
 		}
 
-		if(carrera.getIdCircuito()!=null && !carrera.getIdCircuito().equals("")) {
+		if (carrera.getIdCircuito() != null && !carrera.getIdCircuito().equals("")) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Circuito_idCircuito = ?";
 			} else {
 				query += ", Circuito_idCircuito = ?";
@@ -191,9 +191,9 @@ public class CarreraDAO {
 			posicion++;
 		}
 
-		if(carrera.getIdCampeonato()!=null && !carrera.getIdCampeonato().equals("")) {
+		if (carrera.getIdCampeonato() != null && !carrera.getIdCampeonato().equals("")) {
 
-			if(posicion==1) {
+			if (posicion == 1) {
 				query += "Campeonato_idCampeonato = ?";
 			} else {
 				query += ", Campeonato_idCampeonato = ?";
@@ -204,48 +204,48 @@ public class CarreraDAO {
 
 		query = query.concat(" WHERE idCarrera = ?");
 
-		if(posicion==1) {
+		if (posicion == 1) {
 			return 0;
 		}
 
-		Connection con = ConexionBD.conectarBD();	
+		Connection con = ConexionBD.conectarBD();
 
 		try {
 			PreparedStatement pStmt = con.prepareStatement(query);
 
 			posicion = 1;
 
-			if(carrera.getNumVueltas()>0) {
+			if (carrera.getNumVueltas() > 0) {
 
 				pStmt.setInt(posicion, carrera.getNumVueltas());
 				posicion++;
 			}
 
-			if(carrera.getVueltaRapida()>0) {
+			if (carrera.getVueltaRapida() > 0) {
 
 				pStmt.setDouble(posicion, carrera.getVueltaRapida());
 				posicion++;
 			}
 
-			if(carrera.getNumAccidentes()>0) {
+			if (carrera.getNumAccidentes() > 0) {
 
 				pStmt.setInt(posicion, carrera.getNumAccidentes());
 				posicion++;
 			}
 
-			if(carrera.getFecha()!=null && !carrera.getFecha().equals("")) {
+			if (carrera.getFecha() != null && !carrera.getFecha().equals("")) {
 
 				pStmt.setString(posicion, carrera.getFecha());
 				posicion++;
 			}
 
-			if(carrera.getIdCircuito()!=null && !carrera.getIdCircuito().equals("")) {
+			if (carrera.getIdCircuito() != null && !carrera.getIdCircuito().equals("")) {
 
 				pStmt.setString(posicion, carrera.getIdCircuito());
 				posicion++;
 			}
 
-			if(carrera.getIdCampeonato()!=null && !carrera.getIdCampeonato().equals("")) {
+			if (carrera.getIdCampeonato() != null && !carrera.getIdCampeonato().equals("")) {
 
 				pStmt.setString(posicion, carrera.getIdCampeonato());
 				posicion++;
@@ -299,7 +299,7 @@ public class CarreraDAO {
 		return carrera;
 	}
 
-	public static ArrayList<PilotoVO> cargarPilotos(String codCarrera){
+	public static ArrayList<PilotoVO> cargarPilotos(String codCarrera) {
 
 		ArrayList<PilotoVO> pilotos = new ArrayList<PilotoVO>();
 
@@ -314,7 +314,7 @@ public class CarreraDAO {
 
 			ResultSet res = pStmt.executeQuery();
 
-			while(res.next()) {
+			while (res.next()) {
 
 				PilotoVO piloto = PilotoDAO.cargarPiloto(res.getString("Piloto_idPiloto"));
 
