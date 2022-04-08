@@ -11,107 +11,158 @@ public class PilotoDAO {
 
 	public static int eliminar(String codXX) {
 
+		//Inicializamos int resultado a 0
 		int resultado = 0;
 
-		Connection con = null;
+		//Nos conectamos a la base de datos gracias a conectarBD()
+		Connection con = ConexionBD.conectarBD();
 
-		con = ConexionBD.conectarBD();
-
+		//String query con la consulta a ejecutar
 		String query = "DELETE from piloto WHERE idPiloto = ?";
 
+		//Intentamos
 		try {
 
+			//PreparedStatement pStmt con query como referencia gracias a con
 			PreparedStatement pStmt = con.prepareStatement(query);
 
+			//Asignamos codXX al primer ? del pStmt
 			pStmt.setString(1, codXX);
 
+			//resultado es igual a la ejecución del pStmt
 			resultado = pStmt.executeUpdate();
 
+			//Cerramos pStmt y con
 			pStmt.close();
-
 			con.close();
 
 		} catch (SQLException e) {
 
+			//Expresamos el error
 			e.printStackTrace();
 		}
 
+		//Devolvemos resultado
 		return resultado;
 	}
 
 	public static int insertar(PilotoVO piloto) {
 
+		//Inicializamos int resultado a 0
 		int resultado = 0;
 
+		//Si piloto es igual a null
 		if (piloto == null) {
+			
+			//Devolvemos resultado
 			return resultado;
 		}
 
+		//String query con la consulta a ejecutar
 		String query = "INSERT into piloto values(?,?,?,?,?,?)";
 
+		//Nos conectamos a la base de datos gracias a conectarBD()
 		Connection con = ConexionBD.conectarBD();
 
+		//Intentamos
 		try {
 
+			//PreparedStatement pStmt con query como referencia gracias a con
 			PreparedStatement pStmt = con.prepareStatement(query);
 
+			//Si el idPiloto de piloto es diferente de null y no es igual a ""
 			if (piloto.getIdPiloto() != null || !piloto.getIdPiloto().equals("")) {
 
+				//Asignamos idPiloto de piloto al primer ? del pStmt
 				pStmt.setString(1, piloto.getIdPiloto());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si el dNI de piloto es diferente de null y no es igual a ""
 			if (piloto.getdNI() != null && !piloto.getdNI().equals("")) {
 
+				//Asignamos dNI de piloto al segundo ? del pStmt
 				pStmt.setString(2, piloto.getdNI());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si el nombre de piloto es diferente de null y no es igual a ""
 			if (piloto.getNombre() != null && !piloto.getNombre().equals("")) {
 
+				//Asignamos nombre de piloto al tercer ? del pStmt
 				pStmt.setString(3, piloto.getNombre());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si la edad de piloto es mayor de 0
 			if (piloto.getEdad() > 0) {
 
+				//Asignamos edad de piloto al cuarto ? del pStmt
 				pStmt.setInt(4, piloto.getEdad());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si el sexo de piloto es diferente de null y no es igual a ""
 			if (piloto.getSexo() != null && !piloto.getSexo().equals("")) {
 
+				//Asignamos sexo de piloto al quinto ? del pStmt
 				pStmt.setString(5, piloto.getSexo());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si la direccion de piloto es diferente de null y no es igual a ""
 			if (piloto.getDireccion() != null && !piloto.getDireccion().equals("")) {
 
+				//Asignamos direccion de piloto al sexto ? del pStmt
 				pStmt.setString(6, piloto.getDireccion());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
+			
 
+			//resultado es igual a la ejecución del pStmt
 			resultado = pStmt.executeUpdate();
 
+			//Cerramos pStmt y con
 			pStmt.close();
+			con.close();
 
 		} catch (SQLException e) {
 
+			//Expresamos el error
 			e.printStackTrace();
 		}
 
+		//Devolvemos resultado
 		return resultado;
 	}
 

@@ -2,6 +2,7 @@ package practicaBDD;
 
 public class RuedaVO {
 
+	//Declaramos los atributos privados de la clase RuedaVO
 	private String idRueda;
 	private String marca;
 	private String modelo;
@@ -13,6 +14,7 @@ public class RuedaVO {
 	private String sesion;
 	private String idCoche;
 	
+	//Constructor que recibe datos de todos los atributos y se los asigna al objeto que crea de la clase RuedaVO
 	public RuedaVO(String idRueda, String marca, String modelo, String dimensiones, int peso, String componente,
 			String estado, String fecha, String sesion, String idCoche) {
 		super();
@@ -28,11 +30,16 @@ public class RuedaVO {
 		this.idCoche = idCoche;
 	}
 
+	//Constructor que no recibe ningún atributo pero inicializa un objeto de la clase RuedaVO
 	public RuedaVO() {
 		super();
 	}
 
+	/*
+	 * Getters y Setters de los atributos de la clase RuedaVO
+	 */
 	
+	//idRueda
 	public String getIdRueda() {
 		return idRueda;
 	}
@@ -41,7 +48,7 @@ public class RuedaVO {
 		this.idRueda = idRueda;
 	}
 
-	
+	//marca
 	public String getMarca() {
 		return marca;
 	}
@@ -50,7 +57,7 @@ public class RuedaVO {
 		this.marca = marca;
 	}
 
-	
+	//modelo
 	public String getModelo() {
 		return modelo;
 	}
@@ -59,7 +66,7 @@ public class RuedaVO {
 		this.modelo = modelo;
 	}
 
-	
+	//dimensiones
 	public String getDimensiones() {
 		return dimensiones;
 	}
@@ -68,7 +75,7 @@ public class RuedaVO {
 		this.dimensiones = dimensiones;
 	}
 
-	
+	//peso
 	public int getPeso() {
 		return peso;
 	}
@@ -77,7 +84,7 @@ public class RuedaVO {
 		this.peso = peso;
 	}
 
-	
+	//componente
 	public String getComponente() {
 		return componente;
 	}
@@ -86,7 +93,7 @@ public class RuedaVO {
 		this.componente = componente;
 	}
 
-	
+	//estado
 	public String getEstado() {
 		return estado;
 	}
@@ -95,7 +102,7 @@ public class RuedaVO {
 		this.estado = estado;
 	}
 
-	
+	//fecha
 	public String getFecha() {
 		return fecha;
 	}
@@ -104,7 +111,7 @@ public class RuedaVO {
 		this.fecha = fecha;
 	}
 
-	
+	//sesion
 	public String getSesion() {
 		return sesion;
 	}
@@ -113,7 +120,7 @@ public class RuedaVO {
 		this.sesion = sesion;
 	}
 
-	
+	//idCoche
 	public String getIdCoche() {
 		return idCoche;
 	}

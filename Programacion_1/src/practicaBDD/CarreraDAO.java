@@ -15,115 +15,170 @@ public class CarreraDAO {
 
 	public static int eliminar(String codXX) {
 
+		//Inicializamos int resultado a 0
 		int resultado = 0;
 
-		Connection con = null;
+		//Nos conectamos a la base de datos gracias a conectarBD()
+		Connection con = ConexionBD.conectarBD();
 
-		con = ConexionBD.conectarBD();
-
+		//String query con la consulta a ejecutar
 		String query = "DELETE from carrera WHERE idCarrera = ?";
 
+		//Intentamos
 		try {
 
+			//PreparedStatement pStmt con query como referencia gracias a con
 			PreparedStatement pStmt = con.prepareStatement(query);
 
+			//Asignamos codXX al primer ? del pStmt
 			pStmt.setString(1, codXX);
 
+			//resultado es igual a la ejecución del pStmt
 			resultado = pStmt.executeUpdate();
 
+			//Cerramos pStmt y con
 			pStmt.close();
-
 			con.close();
 
 		} catch (SQLException e) {
 
+			//Expresamos el error
 			e.printStackTrace();
 		}
 
+		//Devolvemos resultado
 		return resultado;
 	}
 
 	public static int insertar(CarreraVO carrera) {
 
+		//Inicializamos int resultado a 0
 		int resultado = 0;
 
+		//Si carrera es igual a null
 		if (carrera == null) {
+			
+			//Devolvemos resultado
 			return resultado;
 		}
 
+		//String query con la consulta a ejecutar
 		String query = "INSERT into carrera values(?,?,?,?,?,?,?)";
 
+		//Nos conectamos a la base de datos gracias a conectarBD()
 		Connection con = ConexionBD.conectarBD();
 
+		//Intentamos
 		try {
 
+			//PreparedStatement pStmt con query como referencia gracias a con
 			PreparedStatement pStmt = con.prepareStatement(query);
 
-			if (carrera.getIdCarrera() == null || carrera.getIdCarrera().equals("")) {
+			//Si el idCarrera de carrera es diferente de null y no es igual a ""
+			if (carrera.getIdCarrera() == null && carrera.getIdCarrera().equals("")) {
 
+				//Asignamos idCarrera de carrera al primer ? del pStmt
 				pStmt.setString(1, carrera.getIdCarrera());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si el numVueltas de carrera es mayor de 0
 			if (carrera.getNumVueltas() > 0) {
 
+				//Asignamos numVueltas de carrera al segundo ? del pStmt
 				pStmt.setInt(2, carrera.getNumVueltas());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si el vueltaRapida de carrera es mayor de 0
 			if (carrera.getVueltaRapida() > 0) {
 
+				//Asignamos vueltaRapida de carrera al tercer ? del pStmt
 				pStmt.setDouble(3, carrera.getVueltaRapida());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si el numAccidentes de carrera es mayor de -1
 			if (carrera.getNumAccidentes() > -1) {
 
+				//Asignamos numAccidentes de carrera al cuarto ? del pStmt
 				pStmt.setInt(4, carrera.getNumAccidentes());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si la fecha de carrera es diferente de null y no es igual a ""
 			if (carrera.getFecha() != null && !carrera.getFecha().equals("")) {
 
+				//Asignamos fecha de carrera al quinto ? del pStmt
 				pStmt.setString(5, carrera.getFecha());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si el idCircuito de carrera es diferente de null y no es igual a ""
 			if (carrera.getIdCircuito() != null && !carrera.getIdCircuito().equals("")) {
 
+				//Asignamos idCircuito de carrera al sexto ? del pStmt
 				pStmt.setString(6, carrera.getIdCircuito());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//Si el idCampeonato de carrera es diferente de null y no es igual a ""
 			if (carrera.getIdCampeonato() != null && !carrera.getIdCampeonato().equals("")) {
 
+				//Asignamos idCampeonato de carrera al séptimo ? del pStmt
 				pStmt.setString(7, carrera.getIdCampeonato());
-			} else {
+				
+			} //Si no
+			else {
 
+				//Devolvemos resultado
 				return resultado;
 			}
 
+			//resultado es igual a la ejecución del pStmt
 			resultado = pStmt.executeUpdate();
 
+			//Cerramos pStmt y con
 			pStmt.close();
+			con.close();
 
 		} catch (SQLException e) {
 
+			//Expresamos el error
 			e.printStackTrace();
 		}
 
+		//Devolvemos resultado
 		return resultado;
 	}
 

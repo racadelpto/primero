@@ -2,6 +2,7 @@ package practicaBDD;
 
 public class CampeonatoVO {
 
+	//Declaramos los atributos privados de la clase CampeonatoVO
 	private String idCampeonato;
 	private String nombre;
 	private int year;
@@ -9,6 +10,7 @@ public class CampeonatoVO {
 	private int numCircuitos;
 	private String pilotoGanador;
 	
+	//Constructor que recibe datos de todos los atributos y se los asigna al objeto que crea de la clase CampeonatoVO
 	public CampeonatoVO(String idCampeonato, String nombre, int year, int numPilotos, int numCircuitos,
 			String pilotoGanador) {
 		super();
@@ -20,11 +22,16 @@ public class CampeonatoVO {
 		this.pilotoGanador = pilotoGanador;
 	}
 
+	//Constructor que no recibe ningún atributo pero inicializa un objeto de la clase CampeonatoVO
 	public CampeonatoVO() {
 		super();
 	}
 
+	/*
+	 * Getters y Setters de los atributos de la clase CampeonatoVO
+	 */
 	
+	//idCampeonato
 	public String getIdCampeonato() {
 		return idCampeonato;
 	}
@@ -33,7 +40,7 @@ public class CampeonatoVO {
 		this.idCampeonato = idCampeonato;
 	}
 
-	
+	//nombre
 	public String getNombre() {
 		return nombre;
 	}
@@ -42,7 +49,7 @@ public class CampeonatoVO {
 		this.nombre = nombre;
 	}
 
-	
+	//year
 	public int getYear() {
 		return year;
 	}
@@ -51,7 +58,7 @@ public class CampeonatoVO {
 		this.year = year;
 	}
 
-	
+	//numPilotos
 	public int getNumPilotos() {
 		return numPilotos;
 	}
@@ -60,7 +67,7 @@ public class CampeonatoVO {
 		this.numPilotos = numPilotos;
 	}
 
-	
+	//numCircuitos
 	public int getNumCircuitos() {
 		return numCircuitos;
 	}
@@ -69,7 +76,7 @@ public class CampeonatoVO {
 		this.numCircuitos = numCircuitos;
 	}
 
-	
+	//pilotoGanador
 	public String getPilotoGanador() {
 		return pilotoGanador;
 	}

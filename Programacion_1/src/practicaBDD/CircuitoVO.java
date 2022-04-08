@@ -2,6 +2,7 @@ package practicaBDD;
 
 public class CircuitoVO {
 
+	//Declaramos los atributos privados de la clase CircuitoVO
 	private String idCircuito;
 	private String nombre;
 	private String ciudad;
@@ -10,6 +11,7 @@ public class CircuitoVO {
 	private double recordVuelta;
 	private int numCurvas;
 	
+	//Constructor que recibe datos de todos los atributos y se los asigna al objeto que crea de la clase CircuitoVO
 	public CircuitoVO(String idCircuito, String nombre, String ciudad, String pais, int longitud, double recordVuelta,
 			int numCurvas) {
 		super();
@@ -22,11 +24,16 @@ public class CircuitoVO {
 		this.numCurvas = numCurvas;
 	}
 
+	//Constructor que no recibe ningún atributo pero inicializa un objeto de la clase CircuitoVO
 	public CircuitoVO() {
 		super();
 	}
 
+	/*
+	 * Getters y Setters de los atributos de la clase CircuitoVO
+	 */
 	
+	//idCircuito
 	public String getIdCircuito() {
 		return idCircuito;
 	}
@@ -35,7 +42,7 @@ public class CircuitoVO {
 		this.idCircuito = idCircuito;
 	}
 
-	
+	//nombre
 	public String getNombre() {
 		return nombre;
 	}
@@ -44,7 +51,7 @@ public class CircuitoVO {
 		this.nombre = nombre;
 	}
 
-	
+	//ciudad
 	public String getCiudad() {
 		return ciudad;
 	}
@@ -53,7 +60,7 @@ public class CircuitoVO {
 		this.ciudad = ciudad;
 	}
 
-	
+	//pais
 	public String getPais() {
 		return pais;
 	}
@@ -62,7 +69,7 @@ public class CircuitoVO {
 		this.pais = pais;
 	}
 
-	
+	//longitud
 	public int getLongitud() {
 		return longitud;
 	}
@@ -71,7 +78,7 @@ public class CircuitoVO {
 		this.longitud = longitud;
 	}
 
-	
+	//recordVuelta
 	public double getRecordVuelta() {
 		return recordVuelta;
 	}
@@ -80,7 +87,7 @@ public class CircuitoVO {
 		this.recordVuelta = recordVuelta;
 	}
 
-
+	//numCurvas
 	public int getNumCurvas() {
 		return numCurvas;
 	}

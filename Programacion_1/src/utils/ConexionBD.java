@@ -7,25 +7,31 @@ import java.sql.SQLException;
 public class ConexionBD {
 
 	public static Connection conectarBD() {
-		
+
 		// Parametros para la conexion a BD
-				String user = "root";
-				String password = "admin";
-				String url = "jdbc:mysql://localhost:3306/campeonatogt3";
-				// Conexion para acceder a BD
-				Connection con = null;
+		String user = "root";
+		String password = "admin";
+		String url = "jdbc:mysql://localhost:3306/campeonatogt3";
+		
+		// Conexion para acceder a BD
+		Connection con = null;
 
-				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
+		//Intentamos
+		try {
+			
+			//A veces es necesario usar este driver
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-					// Nos conectamos a la Base de Datos
-					con = DriverManager.getConnection(url, user, password);
+			// Nos conectamos a la Base de Datos
+			con = DriverManager.getConnection(url, user, password);
 
-				} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 
-					e.printStackTrace();
-				}
+			//Se comunica el error
+			e.printStackTrace();
+		}
 
-				return con;
+		//Devolvemos la conexión
+		return con;
 	}
 }

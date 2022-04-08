@@ -2,6 +2,7 @@ package practicaBDD;
 
 public class CocheVO {
 
+	//Declaramos los atributos privados de la clase CocheVO
 	private String idCoche;
 	private String marca;
 	private String modelo;
@@ -9,6 +10,7 @@ public class CocheVO {
 	private int potencia;
 	private String idPiloto;
 	
+	//Constructor que recibe datos de todos los atributos y se los asigna al objeto que crea de la clase CocheVO
 	public CocheVO(String idCoche, String marca, String modelo, int peso, int potencia, String idPiloto) {
 		super();
 		this.idCoche = idCoche;
@@ -19,11 +21,16 @@ public class CocheVO {
 		this.idPiloto = idPiloto;
 	}
 
+	//Constructor que no recibe ningún atributo pero inicializa un objeto de la clase CocheVO
 	public CocheVO() {
 		super();
 	}
 
+	/*
+	 * Getters y Setters de los atributos de la clase CocheVO
+	 */
 	
+	//idCoche
 	public String getIdCoche() {
 		return idCoche;
 	}
@@ -32,7 +39,7 @@ public class CocheVO {
 		this.idCoche = idCoche;
 	}
 
-	
+	//marca
 	public String getMarca() {
 		return marca;
 	}
@@ -41,7 +48,7 @@ public class CocheVO {
 		this.marca = marca;
 	}
 
-	
+	//modelo
 	public String getModelo() {
 		return modelo;
 	}
@@ -50,7 +57,7 @@ public class CocheVO {
 		this.modelo = modelo;
 	}
 
-	
+	//peso
 	public int getPeso() {
 		return peso;
 	}
@@ -59,7 +66,7 @@ public class CocheVO {
 		this.peso = peso;
 	}
 
-	
+	//potencia
 	public int getPotencia() {
 		return potencia;
 	}
@@ -68,7 +75,7 @@ public class CocheVO {
 		this.potencia = potencia;
 	}
 
-	
+	//idPiloto
 	public String getIdPiloto() {
 		return idPiloto;
 	}

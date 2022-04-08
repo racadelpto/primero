@@ -2,6 +2,7 @@ package practicaBDD;
 
 public class CarreraVO {
 
+	//Declaramos los atributos privados de la clase CarreraVO
 	private String idCarrera;
 	private int numVueltas;
 	private double vueltaRapida;
@@ -10,6 +11,7 @@ public class CarreraVO {
 	private String idCircuito;
 	private String idCampeonato;
 	
+	//Constructor que recibe datos de todos los atributos y se los asigna al objeto que crea de la clase CarreraVO
 	public CarreraVO(String idCarrera, int numVueltas, double vueltaRapida, int numAccidentes, String fecha,
 			String idCircuito, String idCampeonato) {
 		super();
@@ -22,11 +24,16 @@ public class CarreraVO {
 		this.idCampeonato = idCampeonato;
 	}
 
+	//Constructor que no recibe ningún atributo pero inicializa un objeto de la clase CarreraVO
 	public CarreraVO() {
 		super();
 	}
 
+	/*
+	 * Getters y Setters de los atributos de la clase CarreraVO
+	 */
 	
+	//idCarrera
 	public String getIdCarrera() {
 		return idCarrera;
 	}
@@ -35,7 +42,7 @@ public class CarreraVO {
 		this.idCarrera = idCarrera;
 	}
 
-	
+	//numVueltas
 	public int getNumVueltas() {
 		return numVueltas;
 	}
@@ -44,7 +51,7 @@ public class CarreraVO {
 		this.numVueltas = numVueltas;
 	}
 
-	
+	//vueltaRapida
 	public double getVueltaRapida() {
 		return vueltaRapida;
 	}
@@ -53,7 +60,7 @@ public class CarreraVO {
 		this.vueltaRapida = vueltaRapida;
 	}
 
-	
+	//numAccidentes
 	public int getNumAccidentes() {
 		return numAccidentes;
 	}
@@ -62,7 +69,7 @@ public class CarreraVO {
 		this.numAccidentes = numAccidentes;
 	}
 
-	
+	//fecha
 	public String getFecha() {
 		return fecha;
 	}
@@ -71,7 +78,7 @@ public class CarreraVO {
 		this.fecha = fecha;
 	}
 
-	
+	//idCircuito
 	public String getIdCircuito() {
 		return idCircuito;
 	}
@@ -80,7 +87,7 @@ public class CarreraVO {
 		this.idCircuito = idCircuito;
 	}
 
-	
+	//idCampeonato
 	public String getIdCampeonato() {
 		return idCampeonato;
 	}
