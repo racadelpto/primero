@@ -10,16 +10,16 @@ public class ConexionBD {
 
 		// Parametros para la conexion a BD
 		String user = "root";
-		String password = "admin";
+		String password = "";
 		String url = "jdbc:mysql://localhost:3306/campeonatogt3";
-		
+
 		// Conexion para acceder a BD
 		Connection con = null;
 
-		//Intentamos
+		// Intentamos
 		try {
-			
-			//A veces es necesario usar este driver
+
+			// A veces es necesario usar este driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Nos conectamos a la Base de Datos
@@ -27,11 +27,11 @@ public class ConexionBD {
 
 		} catch (SQLException | ClassNotFoundException e) {
 
-			//Se comunica el error
+			// Se comunica el error
 			e.printStackTrace();
 		}
 
-		//Devolvemos la conexión
+		// Devolvemos la conexión
 		return con;
 	}
 }
