@@ -7,8 +7,18 @@ import java.sql.SQLException;
 
 import utils.ConexionBD;
 
+/**
+ * Funciones relativas a la clase CocheDAO
+ * @author raulh
+ *
+ */
 public class CocheDAO {
 
+	/**
+	 * Función que recibe un String con el id de un coche de la BDD y elimina esa fila de la BDD
+	 * @param codXX
+	 * @return un 0 o 1 en función de si ha borrado la fila o no
+	 */
 	public static int eliminar(String codXX) {
 
 		// Inicializamos int resultado a 0
@@ -46,6 +56,11 @@ public class CocheDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un objeto de la clase CocheVO e inserta datos en la tabla coche de la BDD en función de los atributos del objeto
+	 * @param coche
+	 * @return un 0 o 1 en función de si ha insertado los datos o no
+	 */
 	public static int insertar(CocheVO coche) {
 
 		// Inicializamos int resultado a 0
@@ -165,6 +180,11 @@ public class CocheDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un objeto de la clase CocheVO y actualiza los datos en la tabla coche en función de los atributos del objeto
+	 * @param coche
+	 * @return un 0 o 1 en función de si ha actualizado los datos o no
+	 */
 	public static int actualizar(CocheVO coche) {
 
 		// Inicializamos in resultado a 0 e int posicion a 1
@@ -376,6 +396,12 @@ public class CocheDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un String con el id de un coche de la BDD, crea un objeto de la clase CocheVO y le asigna a ese objeto los datos referentes a la fila de la 
+	 * tabla coche en la BDD con el id introducido como parámetro
+	 * @param codXX
+	 * @return un objeto de la clase CocheVO 
+	 */
 	public static CocheVO cargar(String codXX) {
 
 		// Inicializamos un objeto coche de la clase CocheVO

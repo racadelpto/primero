@@ -8,10 +8,20 @@ import java.util.ArrayList;
 
 import utils.ConexionBD;
 
+/**
+ * Funciones relativas a la clase CarreraDAO
+ * @author raulh
+ *
+ */
 public class CarreraDAO {
 
 	ArrayList<PilotoVO> pilotos;
 
+	/**
+	 * Función que recibe un String con el id de una carrera de la BDD y elimina esa fila de la BDD
+	 * @param codXX
+	 * @return un 0 o 1 en función de si ha borrado la fila o no
+	 */
 	public static int eliminar(String codXX) {
 
 		// Inicializamos int resultado a 0
@@ -49,6 +59,11 @@ public class CarreraDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un objeto de la clase CarreraVO e inserta datos en la tabla carrera de la BDD en función de los atributos del objeto
+	 * @param carrera
+	 * @return un 0 o 1 en función de si ha insertado los datos o no
+	 */
 	public static int insertar(CarreraVO carrera) {
 
 		// Inicializamos int resultado a 0
@@ -181,6 +196,11 @@ public class CarreraDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un objeto de la clase CarreraVO y actualiza los datos en la tabla carrera en función de los atributos del objetp
+	 * @param carrera
+	 * @return un 0 o 1 en función de si ha actualizado los datos o no
+	 */
 	public static int actualizar(CarreraVO carrera) {
 
 		// Inicializamos in resultado a 0 e int posicion a 1
@@ -423,6 +443,12 @@ public class CarreraDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un String con el id de una carrera de la BDD, crea un objeto de la clase CarreraVO y le asigna a ese objeto los datos referentes a la fila de la 
+	 * tabla carrera en la BDD con el id introducido como parámetro
+	 * @param codXX
+	 * @return un objeto de la clase CarreraVO 
+	 */
 	public static CarreraVO cargar(String codXX) {
 
 		// Inicializamos un objeto carrera de la clase CarreraVO
@@ -474,6 +500,12 @@ public class CarreraDAO {
 		return carrera;
 	}
 
+	/**
+	 * Función que recibe un String con el id de una carrera de la BDD, crea un ArrayList de la clase PilotoVO e introduce en él los pilotos referentes
+	 * a la fila de la tabla carrera en la BDD con el id introducido como parámetro
+	 * @param codCarrera
+	 * @return un ArrayList de la clase PilotoVO
+	 */
 	public static ArrayList<PilotoVO> cargarPilotos(String codCarrera) {
 
 		// Inicializamos un ArrayList pilotos de la clase PilotoVO

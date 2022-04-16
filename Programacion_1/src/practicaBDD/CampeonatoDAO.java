@@ -8,11 +8,21 @@ import java.util.ArrayList;
 
 import utils.ConexionBD;
 
+/**
+ * Funciones relativas a la clase CampeonatoDAO
+ * @author raulh
+ *
+ */
 public class CampeonatoDAO {
 
 	// ArrayList de la clase CampeonatoDAO
 	ArrayList<CarreraVO> carreras;
 
+	/**
+	 * Función que recibe un String con el id de un campeonato de la BDD y elimina esa fila de la BDD
+	 * @param codXX
+	 * @return un 0 o 1 en función de si ha borrado la fila o no
+	 */
 	public static int eliminar(String codXX) {
 
 		// Inicializamos int resultado a 0
@@ -50,6 +60,11 @@ public class CampeonatoDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un objeto de la clase CampeonatoVO e inserta datos en la tabla campeonato de la BDD en función de los atributos del objeto
+	 * @param campeonato
+	 * @return un 0 o 1 en función de si ha insertado los datos o no
+	 */
 	public static int insertar(CampeonatoVO campeonato) {
 
 		// Inicializamos int resultado a 0
@@ -169,6 +184,11 @@ public class CampeonatoDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un objeto de la clase CampeonatoVO y actualiza los datos en la tabla campeonato en función de los atributos del objeto
+	 * @param campeonato
+	 * @return un 0 o 1 en función de si ha actualizado los datos o no
+	 */
 	public static int actualizar(CampeonatoVO campeonato) {
 
 		// Inicializamos in resultado a 0 e int posicion a 1
@@ -378,6 +398,12 @@ public class CampeonatoDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un String con el id de un campeonato de la BDD, crea un objeto de la clase CampeonatoVO y le asigna a ese objeto los datos referentes a la fila de la 
+	 * tabla campeonato en la BDD con el id introducido como parámetro
+	 * @param codXX
+	 * @return un objeto de la clase CampeonatoVO 
+	 */
 	public static CampeonatoVO cargar(String codXX) {
 
 		// Inicializamos un objeto campeonato de la clase CampeonatoVO
@@ -428,6 +454,12 @@ public class CampeonatoDAO {
 		return campeonato;
 	}
 
+	/**
+	 * Función que recibe un String con el id de un campeonato de la BDD, crea un ArrayList de la clase CarreraVO e introduce en él las carreras referentes
+	 * a la fila de la tabla campeonato en la BDD con el id introducido como parámetro
+	 * @param codCampeonato
+	 * @return un ArrayList de la clase CarreraVO
+	 */
 	public static ArrayList<CarreraVO> cargarCarreras(String codCampeonato) {
 
 		// Inicializamos un ArrayList carreras de la clase CarreraVO
@@ -478,6 +510,11 @@ public class CampeonatoDAO {
 		return carreras;
 	}
 
+	/**
+	 * Función que recibe un String con el id de un campeonato de la BDD y calcula cuantas carreras están referenciadas a la fila de la tabla campeonato en la BDD con el id introducido
+	 * @param codCampeonato
+	 * @return un int con la cantidad de carreras del campeonato al que se referencia con el id introducido
+	 */
 	public static int cantidadCarreras(String codCampeonato) {
 
 		// Inicializamos int resultado a 0

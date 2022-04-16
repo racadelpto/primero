@@ -7,8 +7,18 @@ import java.sql.SQLException;
 
 import utils.ConexionBD;
 
+/**
+ * Funciones relativas a la clase PilotoDAO
+ * @author raulh
+ *
+ */
 public class PilotoDAO {
 
+	/**
+	 * Función que recibe un String con el id de un piloto de la BDD y elimina esa fila de la BDD
+	 * @param codXX
+	 * @return un 0 o 1 en función de si ha borrado la fila o no
+	 */
 	public static int eliminar(String codXX) {
 
 		// Inicializamos int resultado a 0
@@ -46,6 +56,11 @@ public class PilotoDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un objeto de la clase PilotoVO e inserta datos en la tabla piloto de la BDD en función de los atributos del objeto
+	 * @param piloto
+	 * @return un 0 o 1 en función de si ha insertado los datos o no
+	 */
 	public static int insertar(PilotoVO piloto) {
 
 		// Inicializamos int resultado a 0
@@ -165,6 +180,11 @@ public class PilotoDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un objeto de la clase PilotoVO y actualiza los datos en la tabla piloto en función de los atributos del objeto
+	 * @param piloto
+	 * @return un 0 o 1 en función de si ha actualizado los datos o no
+	 */
 	public static int actualizar(PilotoVO piloto) {
 
 		// Inicializamos in resultado a 0 e int posicion a 1
@@ -376,6 +396,12 @@ public class PilotoDAO {
 		return resultado;
 	}
 
+	/**
+	 * Función que recibe un String con el id de un piloto de la BDD, crea un objeto de la clase PilotoVO y le asigna a ese objeto los datos referentes a la fila de la 
+	 * tabla piloto en la BDD con el id introducido como parámetro
+	 * @param codPiloto
+	 * @return un objeto de la clase PilotoVO 
+	 */
 	public static PilotoVO cargarPiloto(String codPiloto) {
 
 		// Inicializamos un objeto piloto de la clase PilotoVO
@@ -427,6 +453,12 @@ public class PilotoDAO {
 		return piloto;
 	}
 
+	/**
+	 * Función que recibe un String con el id de un piloto de la BDD, crea un objeto de la clase CocheVO y le asigna a ese objeto los datos referentes a la fila de la 
+	 * tabla coche en la BDD con el id introducido como parámetro
+	 * @param codPiloto
+	 * @return un objeto de la clase CocheVO 
+	 */
 	public static CocheVO cargarCoche(String codPiloto) {
 
 		// Inicializamos un objeto coche de la clase CocheVO
