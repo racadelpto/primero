@@ -7,9 +7,11 @@ public class pruebasss {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		CocheVO coche = new CocheVO("EE", "DDD", "eee", 1, 1, "ee");
+		PilotoVO piloto = new PilotoVO("Car63V", "saffds", "afafs", 22, "D", "qafdasf", new CocheVO());
+		
+		System.out.println(PilotoDAO.actualizar(piloto));
 
-		System.out.println(CocheDAO.cargar("EE").getIdPiloto());
+		
 
 	}
 
