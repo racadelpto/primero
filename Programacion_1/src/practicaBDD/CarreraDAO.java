@@ -10,6 +10,7 @@ import utils.ConexionBD;
 
 /**
  * Funciones relativas a la clase CarreraDAO
+ * 
  * @author raulh
  *
  */
@@ -18,7 +19,9 @@ public class CarreraDAO {
 	ArrayList<PilotoVO> pilotos;
 
 	/**
-	 * Función que recibe un String con el id de una carrera de la BDD y elimina esa fila de la BDD
+	 * Función que recibe un String con el id de una carrera de la BDD y elimina esa
+	 * fila de la BDD
+	 * 
 	 * @param codXX
 	 * @return un 0 o 1 en función de si ha borrado la fila o no
 	 */
@@ -60,7 +63,9 @@ public class CarreraDAO {
 	}
 
 	/**
-	 * Función que recibe un objeto de la clase CarreraVO e inserta datos en la tabla carrera de la BDD en función de los atributos del objeto
+	 * Función que recibe un objeto de la clase CarreraVO e inserta datos en la
+	 * tabla carrera de la BDD en función de los atributos del objeto
+	 * 
 	 * @param carrera
 	 * @return un 0 o 1 en función de si ha insertado los datos o no
 	 */
@@ -197,7 +202,9 @@ public class CarreraDAO {
 	}
 
 	/**
-	 * Función que recibe un objeto de la clase CarreraVO y actualiza los datos en la tabla carrera en función de los atributos del objetp
+	 * Función que recibe un objeto de la clase CarreraVO y actualiza los datos en
+	 * la tabla carrera en función de los atributos del objetp
+	 * 
 	 * @param carrera
 	 * @return un 0 o 1 en función de si ha actualizado los datos o no
 	 */
@@ -255,7 +262,7 @@ public class CarreraDAO {
 		}
 
 		// Si el numAccidentes de carrera es mayor de 0
-		if (carrera.getNumAccidentes() > 0) {
+		if (carrera.getNumAccidentes() > -1) {
 
 			// Si posicion es igual a 1
 			if (posicion == 1) {
@@ -379,7 +386,7 @@ public class CarreraDAO {
 			}
 
 			// Si el numAccidentes de carrera es mayor de 0
-			if (carrera.getNumAccidentes() > 0) {
+			if (carrera.getNumAccidentes() > -1) {
 
 				// Asignamos numAccidentes de carrera al ? del pStmt en la posicion en ese
 				// momento
@@ -444,10 +451,12 @@ public class CarreraDAO {
 	}
 
 	/**
-	 * Función que recibe un String con el id de una carrera de la BDD, crea un objeto de la clase CarreraVO y le asigna a ese objeto los datos referentes a la fila de la 
-	 * tabla carrera en la BDD con el id introducido como parámetro
+	 * Función que recibe un String con el id de una carrera de la BDD, crea un
+	 * objeto de la clase CarreraVO y le asigna a ese objeto los datos referentes a
+	 * la fila de la tabla carrera en la BDD con el id introducido como parámetro
+	 * 
 	 * @param codXX
-	 * @return un objeto de la clase CarreraVO 
+	 * @return un objeto de la clase CarreraVO
 	 */
 	public static CarreraVO cargar(String codXX) {
 
@@ -501,8 +510,10 @@ public class CarreraDAO {
 	}
 
 	/**
-	 * Función que recibe un String con el id de una carrera de la BDD, crea un ArrayList de la clase PilotoVO e introduce en él los pilotos referentes
-	 * a la fila de la tabla carrera en la BDD con el id introducido como parámetro
+	 * Función que recibe un String con el id de una carrera de la BDD, crea un
+	 * ArrayList de la clase PilotoVO e introduce en él los pilotos referentes a la
+	 * fila de la tabla carrera en la BDD con el id introducido como parámetro
+	 * 
 	 * @param codCarrera
 	 * @return un ArrayList de la clase PilotoVO
 	 */

@@ -1,8 +1,14 @@
 package practicaBDD;
 
+/**
+ * Clase PilotoVO
+ * 
+ * @author rhdie
+ *
+ */
 public class PilotoVO {
 
-	//Declaramos los atributos privados de la clase PilotoVO
+	// Declaramos los atributos privados de la clase PilotoVO
 	private String idPiloto;
 	private String dNI;
 	private String nombre;
@@ -10,9 +16,11 @@ public class PilotoVO {
 	private String sexo;
 	private String direccion;
 	private CocheVO coche;
-	
-	//Constructor que recibe datos de todos los atributos y se los asigna al objeto que crea de la clase PilotoVO
-	public PilotoVO(String idPiloto, String dNI, String nombre, int edad, String sexo, String direccion, CocheVO coche) {
+
+	// Constructor que recibe datos de todos los atributos y se los asigna al objeto
+	// que crea de la clase PilotoVO
+	public PilotoVO(String idPiloto, String dNI, String nombre, int edad, String sexo, String direccion,
+			CocheVO coche) {
 		super();
 		this.idPiloto = idPiloto;
 		this.dNI = dNI;
@@ -23,7 +31,8 @@ public class PilotoVO {
 		this.coche = coche;
 	}
 
-	//Constructor que no recibe ningún atributo pero inicializa un objeto de la clase PilotoVO
+	// Constructor que no recibe ningún atributo pero inicializa un objeto de la
+	// clase PilotoVO
 	public PilotoVO() {
 		super();
 	}
@@ -31,8 +40,8 @@ public class PilotoVO {
 	/*
 	 * Getters y Setters de los atributos de la clase PilotoVO
 	 */
-	
-	//idPiloto
+
+	// idPiloto
 	public String getIdPiloto() {
 		return idPiloto;
 	}
@@ -41,7 +50,7 @@ public class PilotoVO {
 		this.idPiloto = idPiloto;
 	}
 
-	//dNI
+	// dNI
 	public String getdNI() {
 		return dNI;
 	}
@@ -50,7 +59,7 @@ public class PilotoVO {
 		this.dNI = dNI;
 	}
 
-	//nombre
+	// nombre
 	public String getNombre() {
 		return nombre;
 	}
@@ -59,7 +68,7 @@ public class PilotoVO {
 		this.nombre = nombre;
 	}
 
-	//edad
+	// edad
 	public int getEdad() {
 		return edad;
 	}
@@ -68,7 +77,7 @@ public class PilotoVO {
 		this.edad = edad;
 	}
 
-	//sexo
+	// sexo
 	public String getSexo() {
 		return sexo;
 	}
@@ -77,7 +86,7 @@ public class PilotoVO {
 		this.sexo = sexo;
 	}
 
-	//direccion
+	// direccion
 	public String getDireccion() {
 		return direccion;
 	}
@@ -86,7 +95,7 @@ public class PilotoVO {
 		this.direccion = direccion;
 	}
 
-	//coche
+	// coche
 	public CocheVO getCoche() {
 		return coche;
 	}
@@ -94,7 +103,5 @@ public class PilotoVO {
 	public void setCoche(CocheVO coche) {
 		this.coche = coche;
 	}
-	
-	
-	
+
 }

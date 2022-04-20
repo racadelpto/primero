@@ -9,13 +9,16 @@ import utils.ConexionBD;
 
 /**
  * Funciones relativas a la clase PilotoDAO
+ * 
  * @author raulh
  *
  */
 public class PilotoDAO {
 
 	/**
-	 * Función que recibe un String con el id de un piloto de la BDD y elimina esa fila de la BDD
+	 * Función que recibe un String con el id de un piloto de la BDD y elimina esa
+	 * fila de la BDD
+	 * 
 	 * @param codXX
 	 * @return un 0 o 1 en función de si ha borrado la fila o no
 	 */
@@ -57,7 +60,9 @@ public class PilotoDAO {
 	}
 
 	/**
-	 * Función que recibe un objeto de la clase PilotoVO e inserta datos en la tabla piloto de la BDD en función de los atributos del objeto
+	 * Función que recibe un objeto de la clase PilotoVO e inserta datos en la tabla
+	 * piloto de la BDD en función de los atributos del objeto
+	 * 
 	 * @param piloto
 	 * @return un 0 o 1 en función de si ha insertado los datos o no
 	 */
@@ -86,7 +91,7 @@ public class PilotoDAO {
 			PreparedStatement pStmt = con.prepareStatement(query);
 
 			// Si el idPiloto de piloto es diferente de null y no es igual a ""
-			if (piloto.getIdPiloto() != null || !piloto.getIdPiloto().equals("")) {
+			if (piloto.getIdPiloto() != null && !piloto.getIdPiloto().equals("")) {
 
 				// Asignamos idPiloto de piloto al primer ? del pStmt
 				pStmt.setString(1, piloto.getIdPiloto());
@@ -181,7 +186,9 @@ public class PilotoDAO {
 	}
 
 	/**
-	 * Función que recibe un objeto de la clase PilotoVO y actualiza los datos en la tabla piloto en función de los atributos del objeto
+	 * Función que recibe un objeto de la clase PilotoVO y actualiza los datos en la
+	 * tabla piloto en función de los atributos del objeto
+	 * 
 	 * @param piloto
 	 * @return un 0 o 1 en función de si ha actualizado los datos o no
 	 */
@@ -397,10 +404,12 @@ public class PilotoDAO {
 	}
 
 	/**
-	 * Función que recibe un String con el id de un piloto de la BDD, crea un objeto de la clase PilotoVO y le asigna a ese objeto los datos referentes a la fila de la 
-	 * tabla piloto en la BDD con el id introducido como parámetro
+	 * Función que recibe un String con el id de un piloto de la BDD, crea un objeto
+	 * de la clase PilotoVO y le asigna a ese objeto los datos referentes a la fila
+	 * de la tabla piloto en la BDD con el id introducido como parámetro
+	 * 
 	 * @param codPiloto
-	 * @return un objeto de la clase PilotoVO 
+	 * @return un objeto de la clase PilotoVO
 	 */
 	public static PilotoVO cargarPiloto(String codPiloto) {
 
@@ -454,10 +463,12 @@ public class PilotoDAO {
 	}
 
 	/**
-	 * Función que recibe un String con el id de un piloto de la BDD, crea un objeto de la clase CocheVO y le asigna a ese objeto los datos referentes a la fila de la 
-	 * tabla coche en la BDD con el id introducido como parámetro
+	 * Función que recibe un String con el id de un piloto de la BDD, crea un objeto
+	 * de la clase CocheVO y le asigna a ese objeto los datos referentes a la fila
+	 * de la tabla coche en la BDD con el id introducido como parámetro
+	 * 
 	 * @param codPiloto
-	 * @return un objeto de la clase CocheVO 
+	 * @return un objeto de la clase CocheVO
 	 */
 	public static CocheVO cargarCoche(String codPiloto) {
 

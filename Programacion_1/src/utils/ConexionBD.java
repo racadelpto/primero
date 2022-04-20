@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 /**
  * Clase que contiene la función conectarBD()
+ * 
  * @author raulh
  *
  */
@@ -21,7 +22,7 @@ public class ConexionBD {
 		// Parametros para la conexion a BD
 		String user = "root";
 		String password = "";
-		String url = "jdbc:mysql://localhost:3306/campeonatogt3";
+		String url = "jdbc:mysql://localhost:3306/mydb";
 
 		// Conexion para acceder a BD
 		Connection con = null;
